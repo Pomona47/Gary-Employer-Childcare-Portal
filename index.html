@@ -968,63 +968,6 @@
                                 </div>
 
                                 <div style={{background: 'white', borderRadius: '16px', padding: '2rem', boxShadow: '0 4px 24px rgba(0,0,0,0.08)', marginBottom: '2rem'}}>
-                                    <div style={{marginBottom: '2rem'}}>
-                                        <h3 style={{fontFamily: "'Crimson Pro', serif", fontSize: '1.5rem', fontWeight: 700}}>
-                                            Provider Distribution
-                                        </h3>
-                                    </div>
-
-                                    <div style={{display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem'}}>
-                                        {[
-                                            {name: 'Bright Futures Learning Center', letter: 'B', count: 5, cost: 4250},
-                                            {name: 'Mountain View Early Education', letter: 'M', count: 7, cost: 5950}
-                                        ].map((provider, i) => (
-                                            <div key={i} style={{
-                                                background: 'white',
-                                                borderRadius: '12px',
-                                                padding: '1.5rem',
-                                                border: '1px solid #e5e7eb'
-                                            }}>
-                                                <div style={{display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '1rem'}}>
-                                                    <div style={{
-                                                        width: '56px',
-                                                        height: '56px',
-                                                        borderRadius: '12px',
-                                                        background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
-                                                        display: 'flex',
-                                                        alignItems: 'center',
-                                                        justifyContent: 'center',
-                                                        color: 'white',
-                                                        fontWeight: 700,
-                                                        fontSize: '1.5rem'
-                                                    }}>
-                                                        {provider.letter}
-                                                    </div>
-                                                    <div>
-                                                        <div style={{fontWeight: 700, fontSize: '1.1rem', marginBottom: '0.25rem'}}>{provider.name}</div>
-                                                        <div style={{color: '#666', fontSize: '0.85rem'}}>Licensed Center</div>
-                                                    </div>
-                                                </div>
-                                                <div style={{display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1rem', paddingTop: '1rem', borderTop: '1px solid #e5e7eb'}}>
-                                                    <div>
-                                                        <label style={{display: 'block', fontSize: '0.75rem', color: '#666', textTransform: 'uppercase', letterSpacing: '0.05em', fontWeight: 600, marginBottom: '0.25rem'}}>
-                                                            Enrolled Employees
-                                                        </label>
-                                                        <div style={{fontWeight: 600, fontSize: '0.95rem'}}>{provider.count}</div>
-                                                    </div>
-                                                    <div>
-                                                        <label style={{display: 'block', fontSize: '0.75rem', color: '#666', textTransform: 'uppercase', letterSpacing: '0.05em', fontWeight: 600, marginBottom: '0.25rem'}}>
-                                                            Monthly Cost
-                                                        </label>
-                                                        <div style={{fontWeight: 600, fontSize: '0.95rem'}}>${provider.cost.toLocaleString()}</div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        ))}
-                                    </div>
-                                </div>
-
-                                <div style={{background: 'white', borderRadius: '16px', padding: '2rem', boxShadow: '0 4px 24px rgba(0,0,0,0.08)', marginBottom: '2rem'}}>
                                     <div style={{display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '2rem'}}>
                                         <h3 style={{fontFamily: "'Crimson Pro', serif", fontSize: '1.5rem', fontWeight: 700}}>
                                             Enrolled Employees
@@ -1099,6 +1042,63 @@
                                         </table>
                                     </div>
                                 </div>
+
+                                <div style={{background: 'white', borderRadius: '16px', padding: '2rem', boxShadow: '0 4px 24px rgba(0,0,0,0.08)'}}>
+                                    <div style={{marginBottom: '2rem'}}>
+                                        <h3 style={{fontFamily: "'Crimson Pro', serif", fontSize: '1.5rem', fontWeight: 700}}>
+                                            Provider Distribution
+                                        </h3>
+                                    </div>
+
+                                    <div style={{display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem'}}>
+                                        {[
+                                            {name: 'Bright Futures Learning Center', letter: 'B', count: 5, cost: 4250},
+                                            {name: 'Mountain View Early Education', letter: 'M', count: 7, cost: 5950}
+                                        ].map((provider, i) => (
+                                            <div key={i} style={{
+                                                background: 'white',
+                                                borderRadius: '12px',
+                                                padding: '1.5rem',
+                                                border: '1px solid #e5e7eb'
+                                            }}>
+                                                <div style={{display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '1rem'}}>
+                                                    <div style={{
+                                                        width: '56px',
+                                                        height: '56px',
+                                                        borderRadius: '12px',
+                                                        background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+                                                        display: 'flex',
+                                                        alignItems: 'center',
+                                                        justifyContent: 'center',
+                                                        color: 'white',
+                                                        fontWeight: 700,
+                                                        fontSize: '1.5rem'
+                                                    }}>
+                                                        {provider.letter}
+                                                    </div>
+                                                    <div>
+                                                        <div style={{fontWeight: 700, fontSize: '1.1rem', marginBottom: '0.25rem'}}>{provider.name}</div>
+                                                        <div style={{color: '#666', fontSize: '0.85rem'}}>Licensed Center</div>
+                                                    </div>
+                                                </div>
+                                                <div style={{display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1rem', paddingTop: '1rem', borderTop: '1px solid #e5e7eb'}}>
+                                                    <div>
+                                                        <label style={{display: 'block', fontSize: '0.75rem', color: '#666', textTransform: 'uppercase', letterSpacing: '0.05em', fontWeight: 600, marginBottom: '0.25rem'}}>
+                                                            Enrolled Employees
+                                                        </label>
+                                                        <div style={{fontWeight: 600, fontSize: '0.95rem'}}>{provider.count}</div>
+                                                    </div>
+                                                    <div>
+                                                        <label style={{display: 'block', fontSize: '0.75rem', color: '#666', textTransform: 'uppercase', letterSpacing: '0.05em', fontWeight: 600, marginBottom: '0.25rem'}}>
+                                                            Monthly Cost
+                                                        </label>
+                                                        <div style={{fontWeight: 600, fontSize: '0.95rem'}}>${provider.cost.toLocaleString()}</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        ))}
+                                    </div>
+                                </div>
                             </div>
                         )}
 
@@ -1130,6 +1130,65 @@
                                 </div>
 
                                 <div style={{background: 'white', borderRadius: '16px', padding: '2rem', boxShadow: '0 4px 24px rgba(0,0,0,0.08)', marginBottom: '2rem'}}>
+                                    <h3 style={{fontFamily: "'Crimson Pro', serif", fontSize: '1.5rem', fontWeight: 700, marginBottom: '1.5rem'}}>
+                                        Funding Source Details
+                                    </h3>
+
+                                    <div style={{display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '1.5rem'}}>
+                                        <div style={{padding: '1.5rem', background: '#f8fafc', borderRadius: '12px', borderLeft: '4px solid #2c5364'}}>
+                                            <div style={{display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '1rem'}}>
+                                                <div style={{width: '40px', height: '40px', borderRadius: '8px', background: '#2c5364', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'white', fontWeight: 700}}>E</div>
+                                                <div>
+                                                    <div style={{fontWeight: 700, fontSize: '1rem'}}>Employer Funding</div>
+                                                    <div style={{fontSize: '0.85rem', color: '#666'}}>Sample Company</div>
+                                                </div>
+                                            </div>
+                                            <div style={{fontSize: '0.9rem', color: '#374151', lineHeight: 1.6, marginBottom: '1rem'}}>
+                                                Direct employer contribution to employee childcare costs, eligible for §45F tax credit.
+                                            </div>
+                                            <div style={{display: 'flex', justifyContent: 'space-between', paddingTop: '1rem', borderTop: '1px solid #e5e7eb'}}>
+                                                <span style={{color: '#666'}}>Monthly Total</span>
+                                                <span style={{fontWeight: 700, color: '#2c5364'}}>$6,000</span>
+                                            </div>
+                                        </div>
+
+                                        <div style={{padding: '1.5rem', background: '#fff7ed', borderRadius: '12px', borderLeft: '4px solid #ea580c'}}>
+                                            <div style={{display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '1rem'}}>
+                                                <div style={{width: '40px', height: '40px', borderRadius: '8px', background: '#ea580c', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'white', fontWeight: 700}}>S</div>
+                                                <div>
+                                                    <div style={{fontWeight: 700, fontSize: '1rem'}}>State Funding</div>
+                                                    <div style={{fontSize: '0.85rem', color: '#666'}}>Colorado CCCAP</div>
+                                                </div>
+                                            </div>
+                                            <div style={{fontSize: '0.9rem', color: '#374151', lineHeight: 1.6, marginBottom: '1rem'}}>
+                                                State childcare assistance program funding for eligible families based on income.
+                                            </div>
+                                            <div style={{display: 'flex', justifyContent: 'space-between', paddingTop: '1rem', borderTop: '1px solid #e5e7eb'}}>
+                                                <span style={{color: '#666'}}>Monthly Total</span>
+                                                <span style={{fontWeight: 700, color: '#ea580c'}}>$1,650</span>
+                                            </div>
+                                        </div>
+
+                                        <div style={{padding: '1.5rem', background: '#faf5ff', borderRadius: '12px', borderLeft: '4px solid #7c3aed'}}>
+                                            <div style={{display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '1rem'}}>
+                                                <div style={{width: '40px', height: '40px', borderRadius: '8px', background: '#7c3aed', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'white', fontWeight: 700}}>P</div>
+                                                <div>
+                                                    <div style={{fontWeight: 700, fontSize: '1rem'}}>Philanthropy</div>
+                                                    <div style={{fontSize: '0.85rem', color: '#666'}}>Gary Foundation</div>
+                                                </div>
+                                            </div>
+                                            <div style={{fontSize: '0.9rem', color: '#374151', lineHeight: 1.6, marginBottom: '1rem'}}>
+                                                Philanthropic grants to supplement childcare costs for qualifying employees.
+                                            </div>
+                                            <div style={{display: 'flex', justifyContent: 'space-between', paddingTop: '1rem', borderTop: '1px solid #e5e7eb'}}>
+                                                <span style={{color: '#666'}}>Monthly Total</span>
+                                                <span style={{fontWeight: 700, color: '#7c3aed'}}>$6,000</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div style={{background: 'white', borderRadius: '16px', padding: '2rem', boxShadow: '0 4px 24px rgba(0,0,0,0.08)'}}>
                                     <div style={{display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '2rem'}}>
                                         <h3 style={{fontFamily: "'Crimson Pro', serif", fontSize: '1.5rem', fontWeight: 700}}>
                                             Funding Sources by Employee
@@ -1245,65 +1304,6 @@
                                                 </div>
                                             );
                                         })}
-                                    </div>
-                                </div>
-
-                                <div style={{background: 'white', borderRadius: '16px', padding: '2rem', boxShadow: '0 4px 24px rgba(0,0,0,0.08)'}}>
-                                    <h3 style={{fontFamily: "'Crimson Pro', serif", fontSize: '1.5rem', fontWeight: 700, marginBottom: '1.5rem'}}>
-                                        Funding Source Details
-                                    </h3>
-
-                                    <div style={{display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '1.5rem'}}>
-                                        <div style={{padding: '1.5rem', background: '#f8fafc', borderRadius: '12px', borderLeft: '4px solid #2c5364'}}>
-                                            <div style={{display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '1rem'}}>
-                                                <div style={{width: '40px', height: '40px', borderRadius: '8px', background: '#2c5364', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'white', fontWeight: 700}}>E</div>
-                                                <div>
-                                                    <div style={{fontWeight: 700, fontSize: '1rem'}}>Employer Funding</div>
-                                                    <div style={{fontSize: '0.85rem', color: '#666'}}>Sample Company</div>
-                                                </div>
-                                            </div>
-                                            <div style={{fontSize: '0.9rem', color: '#374151', lineHeight: 1.6, marginBottom: '1rem'}}>
-                                                Direct employer contribution to employee childcare costs, eligible for §45F tax credit.
-                                            </div>
-                                            <div style={{display: 'flex', justifyContent: 'space-between', paddingTop: '1rem', borderTop: '1px solid #e5e7eb'}}>
-                                                <span style={{color: '#666'}}>Monthly Total</span>
-                                                <span style={{fontWeight: 700, color: '#2c5364'}}>$6,000</span>
-                                            </div>
-                                        </div>
-
-                                        <div style={{padding: '1.5rem', background: '#fff7ed', borderRadius: '12px', borderLeft: '4px solid #ea580c'}}>
-                                            <div style={{display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '1rem'}}>
-                                                <div style={{width: '40px', height: '40px', borderRadius: '8px', background: '#ea580c', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'white', fontWeight: 700}}>S</div>
-                                                <div>
-                                                    <div style={{fontWeight: 700, fontSize: '1rem'}}>State Funding</div>
-                                                    <div style={{fontSize: '0.85rem', color: '#666'}}>Colorado CCCAP</div>
-                                                </div>
-                                            </div>
-                                            <div style={{fontSize: '0.9rem', color: '#374151', lineHeight: 1.6, marginBottom: '1rem'}}>
-                                                State childcare assistance program funding for eligible families based on income.
-                                            </div>
-                                            <div style={{display: 'flex', justifyContent: 'space-between', paddingTop: '1rem', borderTop: '1px solid #e5e7eb'}}>
-                                                <span style={{color: '#666'}}>Monthly Total</span>
-                                                <span style={{fontWeight: 700, color: '#ea580c'}}>$1,650</span>
-                                            </div>
-                                        </div>
-
-                                        <div style={{padding: '1.5rem', background: '#faf5ff', borderRadius: '12px', borderLeft: '4px solid #7c3aed'}}>
-                                            <div style={{display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '1rem'}}>
-                                                <div style={{width: '40px', height: '40px', borderRadius: '8px', background: '#7c3aed', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'white', fontWeight: 700}}>P</div>
-                                                <div>
-                                                    <div style={{fontWeight: 700, fontSize: '1rem'}}>Philanthropy</div>
-                                                    <div style={{fontSize: '0.85rem', color: '#666'}}>Gary Foundation</div>
-                                                </div>
-                                            </div>
-                                            <div style={{fontSize: '0.9rem', color: '#374151', lineHeight: 1.6, marginBottom: '1rem'}}>
-                                                Philanthropic grants to supplement childcare costs for qualifying employees.
-                                            </div>
-                                            <div style={{display: 'flex', justifyContent: 'space-between', paddingTop: '1rem', borderTop: '1px solid #e5e7eb'}}>
-                                                <span style={{color: '#666'}}>Monthly Total</span>
-                                                <span style={{fontWeight: 700, color: '#7c3aed'}}>$6,000</span>
-                                            </div>
-                                        </div>
                                     </div>
                                 </div>
                             </div>

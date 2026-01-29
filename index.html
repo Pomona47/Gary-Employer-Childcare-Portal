@@ -61,11 +61,32 @@
                         zIndex: 100
                     }}>
                         <div style={{maxWidth: '1400px', margin: '0 auto', display: 'flex', justifyContent: 'space-between', alignItems: 'center'}}>
-                            <div>
-                                <h1 style={{fontFamily: "'Crimson Pro', serif", fontSize: '1.5rem', fontWeight: 700, color: '#1a1a1a'}}>
-                                    Gary Employer-Sponsored Childcare Subsidy Program
-                                </h1>
-                                <div style={{fontSize: '0.9rem', color: '#666', marginTop: '0.25rem'}}>Sample Company</div>
+                            <div style={{display: 'flex', alignItems: 'center', gap: '1rem'}}>
+                                {/* Sample Company Logo */}
+                                <div style={{
+                                    width: '48px',
+                                    height: '48px',
+                                    background: 'linear-gradient(135deg, #2c5364 0%, #203a43 100%)',
+                                    borderRadius: '10px',
+                                    display: 'flex',
+                                    alignItems: 'center',
+                                    justifyContent: 'center',
+                                    boxShadow: '0 2px 8px rgba(44, 83, 100, 0.3)'
+                                }}>
+                                    <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+                                        <path d="M14 3L24 8.5V19.5L14 25L4 19.5V8.5L14 3Z" stroke="white" strokeWidth="2" fill="none"/>
+                                        <path d="M14 10L19 13V19L14 22L9 19V13L14 10Z" fill="white" opacity="0.9"/>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <div style={{display: 'flex', alignItems: 'center', gap: '0.5rem'}}>
+                                        <span style={{fontSize: '1.1rem', fontWeight: 700, color: '#2c5364', letterSpacing: '-0.02em'}}>SAMPLE</span>
+                                        <span style={{fontSize: '1.1rem', fontWeight: 400, color: '#666'}}>COMPANY</span>
+                                    </div>
+                                    <h1 style={{fontFamily: "'Crimson Pro', serif", fontSize: '1.5rem', fontWeight: 700, color: '#1a1a1a', marginTop: '0.15rem'}}>
+                                        Gary Employer-Sponsored Childcare Subsidy Program
+                                    </h1>
+                                </div>
                             </div>
                             <div style={{
                                 display: 'flex',

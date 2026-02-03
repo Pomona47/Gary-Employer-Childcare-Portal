@@ -1,0 +1,1185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employer Childcare Program | Gary Community Ventures</title>
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@400;500;600;700&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background: #ffffff;
+            color: #1a1a2e;
+            line-height: 1.6;
+        }
+    </style>
+</head>
+<body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+        const { useState, useEffect } = React;
+
+        // Icon Components
+        const CheckIcon = ({ size = 24 }) => (
+            <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                <polyline points="20 6 9 17 4 12"></polyline>
+            </svg>
+        );
+
+        const ArrowRight = ({ size = 24 }) => (
+            <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+            </svg>
+        );
+
+        const DollarIcon = ({ size = 24 }) => (
+            <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <line x1="12" y1="1" x2="12" y2="23"></line>
+                <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+            </svg>
+        );
+
+        const UsersIcon = ({ size = 24 }) => (
+            <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                <circle cx="9" cy="7" r="4"></circle>
+                <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+            </svg>
+        );
+
+        const ShieldIcon = ({ size = 24 }) => (
+            <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+            </svg>
+        );
+
+        const FileTextIcon = ({ size = 24 }) => (
+            <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                <polyline points="14 2 14 8 20 8"></polyline>
+                <line x1="16" y1="13" x2="8" y2="13"></line>
+                <line x1="16" y1="17" x2="8" y2="17"></line>
+                <polyline points="10 9 9 9 8 9"></polyline>
+            </svg>
+        );
+
+        const TrendingUpIcon = ({ size = 24 }) => (
+            <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline>
+                <polyline points="17 6 23 6 23 12"></polyline>
+            </svg>
+        );
+
+        const BuildingIcon = ({ size = 24 }) => (
+            <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <rect x="4" y="2" width="16" height="20" rx="2" ry="2"></rect>
+                <path d="M9 22v-4h6v4"></path>
+                <path d="M8 6h.01"></path>
+                <path d="M16 6h.01"></path>
+                <path d="M12 6h.01"></path>
+                <path d="M12 10h.01"></path>
+                <path d="M12 14h.01"></path>
+                <path d="M16 10h.01"></path>
+                <path d="M16 14h.01"></path>
+                <path d="M8 10h.01"></path>
+                <path d="M8 14h.01"></path>
+            </svg>
+        );
+
+        const HeartIcon = ({ size = 24 }) => (
+            <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+            </svg>
+        );
+
+        const GiftIcon = ({ size = 24 }) => (
+            <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <polyline points="20 12 20 22 4 22 4 12"></polyline>
+                <rect x="2" y="7" width="20" height="5"></rect>
+                <line x1="12" y1="22" x2="12" y2="7"></line>
+                <path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"></path>
+                <path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"></path>
+            </svg>
+        );
+
+        // Navigation Component
+        const Navigation = () => {
+            const [scrolled, setScrolled] = useState(false);
+
+            useEffect(() => {
+                const handleScroll = () => setScrolled(window.scrollY > 50);
+                window.addEventListener('scroll', handleScroll);
+                return () => window.removeEventListener('scroll', handleScroll);
+            }, []);
+
+            return (
+                <nav style={{
+                    position: 'fixed',
+                    top: 0,
+                    left: 0,
+                    right: 0,
+                    zIndex: 1000,
+                    padding: '1rem 2rem',
+                    background: scrolled ? 'rgba(255,255,255,0.98)' : 'transparent',
+                    boxShadow: scrolled ? '0 2px 20px rgba(0,0,0,0.08)' : 'none',
+                    transition: 'all 0.3s ease',
+                    display: 'flex',
+                    justifyContent: 'space-between',
+                    alignItems: 'center'
+                }}>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+                        <div style={{
+                            width: '40px',
+                            height: '40px',
+                            background: 'linear-gradient(135deg, #2c5364 0%, #203a43 100%)',
+                            borderRadius: '10px',
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                            color: 'white',
+                            fontWeight: '700',
+                            fontSize: '1.1rem'
+                        }}>G</div>
+                        <span style={{
+                            fontFamily: 'Crimson Pro, serif',
+                            fontSize: '1.25rem',
+                            fontWeight: '600',
+                            color: scrolled ? '#1a1a2e' : '#1a1a2e'
+                        }}>Gary Community Ventures</span>
+                    </div>
+                    <div style={{ display: 'flex', gap: '2rem', alignItems: 'center' }}>
+                        <a href="#how-it-works" style={{ color: '#1a1a2e', textDecoration: 'none', fontWeight: '500', fontSize: '0.95rem' }}>How It Works</a>
+                        <a href="#calculator" style={{ color: '#1a1a2e', textDecoration: 'none', fontWeight: '500', fontSize: '0.95rem' }}>ROI Calculator</a>
+                        <a href="#matching" style={{ color: '#1a1a2e', textDecoration: 'none', fontWeight: '500', fontSize: '0.95rem' }}>Matching Program</a>
+                        <a href="#signup" style={{
+                            background: 'linear-gradient(135deg, #2c5364 0%, #203a43 100%)',
+                            color: 'white',
+                            padding: '0.6rem 1.5rem',
+                            borderRadius: '8px',
+                            textDecoration: 'none',
+                            fontWeight: '600',
+                            fontSize: '0.95rem',
+                            transition: 'transform 0.2s ease, box-shadow 0.2s ease'
+                        }}>Join the Pilot</a>
+                    </div>
+                </nav>
+            );
+        };
+
+        // Hero Section
+        const HeroSection = () => (
+            <section style={{
+                minHeight: '100vh',
+                background: 'linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%)',
+                display: 'flex',
+                alignItems: 'center',
+                padding: '6rem 2rem 4rem',
+                position: 'relative',
+                overflow: 'hidden'
+            }}>
+                {/* Decorative elements */}
+                <div style={{
+                    position: 'absolute',
+                    top: '10%',
+                    right: '5%',
+                    width: '400px',
+                    height: '400px',
+                    background: 'radial-gradient(circle, rgba(44,83,100,0.08) 0%, transparent 70%)',
+                    borderRadius: '50%'
+                }}></div>
+                <div style={{
+                    position: 'absolute',
+                    bottom: '10%',
+                    left: '10%',
+                    width: '300px',
+                    height: '300px',
+                    background: 'radial-gradient(circle, rgba(102,126,234,0.08) 0%, transparent 70%)',
+                    borderRadius: '50%'
+                }}></div>
+
+                <div style={{ maxWidth: '1200px', margin: '0 auto', width: '100%', position: 'relative', zIndex: 1 }}>
+                    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '4rem', alignItems: 'center' }}>
+                        <div>
+                            <div style={{
+                                display: 'inline-flex',
+                                alignItems: 'center',
+                                gap: '0.5rem',
+                                background: 'rgba(44,83,100,0.1)',
+                                padding: '0.5rem 1rem',
+                                borderRadius: '100px',
+                                marginBottom: '1.5rem'
+                            }}>
+                                <span style={{ fontSize: '0.85rem', fontWeight: '600', color: '#2c5364' }}>2026 Pilot Program</span>
+                            </div>
+                            <h1 style={{
+                                fontFamily: 'Crimson Pro, serif',
+                                fontSize: '3.5rem',
+                                fontWeight: '700',
+                                lineHeight: '1.15',
+                                color: '#1a1a2e',
+                                marginBottom: '1.5rem'
+                            }}>
+                                Support Your Employees' Childcare.
+                                <span style={{ color: '#2c5364' }}> We'll Match Your Investment.</span>
+                            </h1>
+                            <p style={{
+                                fontSize: '1.2rem',
+                                color: '#4a5568',
+                                marginBottom: '2rem',
+                                lineHeight: '1.7'
+                            }}>
+                                Gary Community Ventures helps Colorado employers provide childcare benefits
+                                with philanthropic matching to reduce your costs and maximize impact for families.
+                            </p>
+                            <div style={{ display: 'flex', gap: '1rem', marginBottom: '3rem' }}>
+                                <a href="#signup" style={{
+                                    display: 'inline-flex',
+                                    alignItems: 'center',
+                                    gap: '0.5rem',
+                                    background: 'linear-gradient(135deg, #2c5364 0%, #203a43 100%)',
+                                    color: 'white',
+                                    padding: '1rem 2rem',
+                                    borderRadius: '10px',
+                                    textDecoration: 'none',
+                                    fontWeight: '600',
+                                    fontSize: '1.05rem',
+                                    boxShadow: '0 4px 15px rgba(44,83,100,0.3)',
+                                    transition: 'transform 0.2s ease'
+                                }}>
+                                    Apply for the Pilot <ArrowRight size={20} />
+                                </a>
+                                <a href="#calculator" style={{
+                                    display: 'inline-flex',
+                                    alignItems: 'center',
+                                    gap: '0.5rem',
+                                    background: 'white',
+                                    color: '#2c5364',
+                                    padding: '1rem 2rem',
+                                    borderRadius: '10px',
+                                    textDecoration: 'none',
+                                    fontWeight: '600',
+                                    fontSize: '1.05rem',
+                                    border: '2px solid #2c5364',
+                                    transition: 'all 0.2s ease'
+                                }}>
+                                    Calculate Your Savings
+                                </a>
+                            </div>
+                            <div style={{ display: 'flex', gap: '2rem' }}>
+                                <div>
+                                    <div style={{ fontSize: '2rem', fontWeight: '700', color: '#2c5364' }}>$680M</div>
+                                    <div style={{ fontSize: '0.9rem', color: '#718096' }}>Lost annually by CO employers</div>
+                                </div>
+                                <div>
+                                    <div style={{ fontSize: '2rem', fontWeight: '700', color: '#2c5364' }}>Up to 50%</div>
+                                    <div style={{ fontSize: '0.9rem', color: '#718096' }}>Philanthropic match available</div>
+                                </div>
+                                <div>
+                                    <div style={{ fontSize: '2rem', fontWeight: '700', color: '#2c5364' }}>3-5</div>
+                                    <div style={{ fontSize: '0.9rem', color: '#718096' }}>Pilot spots available</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div style={{
+                            background: 'white',
+                            borderRadius: '20px',
+                            padding: '2.5rem',
+                            boxShadow: '0 25px 50px rgba(0,0,0,0.1)',
+                            position: 'relative'
+                        }}>
+                            <div style={{
+                                position: 'absolute',
+                                top: '-15px',
+                                right: '-15px',
+                                background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+                                color: 'white',
+                                padding: '0.5rem 1rem',
+                                borderRadius: '8px',
+                                fontSize: '0.85rem',
+                                fontWeight: '600'
+                            }}>Matched Funding</div>
+                            <h3 style={{ fontFamily: 'Crimson Pro, serif', fontSize: '1.5rem', marginBottom: '1.5rem', color: '#1a1a2e' }}>
+                                Quick Example: With 50% Match
+                            </h3>
+                            <div style={{ marginBottom: '1.5rem' }}>
+                                <div style={{ display: 'flex', justifyContent: 'space-between', padding: '0.75rem 0', borderBottom: '1px solid #e2e8f0' }}>
+                                    <span style={{ color: '#718096' }}>Employees enrolled</span>
+                                    <span style={{ fontWeight: '600' }}>10</span>
+                                </div>
+                                <div style={{ display: 'flex', justifyContent: 'space-between', padding: '0.75rem 0', borderBottom: '1px solid #e2e8f0' }}>
+                                    <span style={{ color: '#718096' }}>Total monthly benefit per employee</span>
+                                    <span style={{ fontWeight: '600' }}>$500</span>
+                                </div>
+                                <div style={{ display: 'flex', justifyContent: 'space-between', padding: '0.75rem 0', borderBottom: '1px solid #e2e8f0' }}>
+                                    <span style={{ color: '#718096' }}>Your contribution (50%)</span>
+                                    <span style={{ fontWeight: '600' }}>$250/employee</span>
+                                </div>
+                                <div style={{ display: 'flex', justifyContent: 'space-between', padding: '0.75rem 0', borderBottom: '1px solid #e2e8f0', color: '#10b981' }}>
+                                    <span>Gary's Philanthropic Match (50%)</span>
+                                    <span style={{ fontWeight: '700' }}>+$250/employee</span>
+                                </div>
+                            </div>
+                            <div style={{
+                                background: 'linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%)',
+                                borderRadius: '12px',
+                                padding: '1.25rem',
+                                textAlign: 'center'
+                            }}>
+                                <div style={{ color: '#166534', fontSize: '0.9rem', marginBottom: '0.25rem' }}>Your Net Annual Cost</div>
+                                <div style={{ color: '#166534', fontSize: '2rem', fontWeight: '700' }}>$30,000</div>
+                                <div style={{ color: '#166534', fontSize: '0.85rem' }}>$250/employee/month with match</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        );
+
+        // Problem Section
+        const ProblemSection = () => (
+            <section style={{ padding: '6rem 2rem', background: '#ffffff' }}>
+                <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
+                    <div style={{ textAlign: 'center', marginBottom: '4rem' }}>
+                        <h2 style={{ fontFamily: 'Crimson Pro, serif', fontSize: '2.5rem', fontWeight: '700', color: '#1a1a2e', marginBottom: '1rem' }}>
+                            The Childcare Crisis Is a Business Problem
+                        </h2>
+                        <p style={{ fontSize: '1.1rem', color: '#4a5568', maxWidth: '700px', margin: '0 auto' }}>
+                            Colorado employers lose hundreds of millions annually to childcare-related challenges.
+                            The impact on your workforce is measurable.
+                        </p>
+                    </div>
+                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '2rem' }}>
+                        {[
+                            { stat: '$15,600', label: 'Average annual cost of infant care in Colorado', subtext: '31% of average parent income' },
+                            { stat: '2.5 hrs', label: 'Lost work time per parent per week', subtext: 'Due to childcare challenges' },
+                            { stat: '16%', label: 'Of parents report being fired', subtext: 'Due to childcare access issues' },
+                            { stat: '10,200', label: 'Colorado mothers sidelined', subtext: '$3.8B potential economic impact' }
+                        ].map((item, i) => (
+                            <div key={i} style={{
+                                background: '#f8fafc',
+                                borderRadius: '16px',
+                                padding: '2rem',
+                                textAlign: 'center',
+                                transition: 'transform 0.2s ease, box-shadow 0.2s ease'
+                            }}>
+                                <div style={{ fontSize: '2.5rem', fontWeight: '700', color: '#2c5364', marginBottom: '0.5rem' }}>{item.stat}</div>
+                                <div style={{ fontSize: '1rem', color: '#1a1a2e', fontWeight: '600', marginBottom: '0.5rem' }}>{item.label}</div>
+                                <div style={{ fontSize: '0.85rem', color: '#718096' }}>{item.subtext}</div>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            </section>
+        );
+
+        // How It Works Section
+        const HowItWorksSection = () => (
+            <section id="how-it-works" style={{ padding: '6rem 2rem', background: 'linear-gradient(135deg, #1a1a2e 0%, #2c5364 100%)', color: 'white' }}>
+                <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
+                    <div style={{ textAlign: 'center', marginBottom: '4rem' }}>
+                        <h2 style={{ fontFamily: 'Crimson Pro, serif', fontSize: '2.5rem', fontWeight: '700', marginBottom: '1rem' }}>
+                            How the Program Works
+                        </h2>
+                        <p style={{ fontSize: '1.1rem', color: 'rgba(255,255,255,0.8)', maxWidth: '700px', margin: '0 auto' }}>
+                            Gary acts as an intermediary between your business and licensed childcare providers,
+                            with philanthropic funds matching your contributions to maximize the benefit for employees.
+                        </p>
+                    </div>
+
+                    {/* Flow Diagram */}
+                    <div style={{
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        gap: '1rem',
+                        marginBottom: '4rem',
+                        flexWrap: 'wrap'
+                    }}>
+                        <div style={{
+                            background: 'rgba(255,255,255,0.1)',
+                            borderRadius: '16px',
+                            padding: '1.5rem 2rem',
+                            textAlign: 'center',
+                            border: '2px solid rgba(255,255,255,0.2)'
+                        }}>
+                            <BuildingIcon size={32} />
+                            <div style={{ marginTop: '0.5rem', fontWeight: '600' }}>Your Company</div>
+                            <div style={{ fontSize: '0.85rem', color: 'rgba(255,255,255,0.7)' }}>Contributes funds</div>
+                        </div>
+                        <ArrowRight size={28} style={{ color: 'rgba(255,255,255,0.5)' }} />
+                        <div style={{
+                            background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+                            borderRadius: '16px',
+                            padding: '1.5rem 2rem',
+                            textAlign: 'center',
+                            boxShadow: '0 10px 30px rgba(102,126,234,0.3)'
+                        }}>
+                            <div style={{ fontSize: '1.5rem', fontWeight: '700' }}>Gary</div>
+                            <div style={{ fontSize: '0.85rem', marginTop: '0.25rem' }}>+ Philanthropic Match</div>
+                            <div style={{ fontSize: '0.75rem', color: 'rgba(255,255,255,0.8)', marginTop: '0.5rem' }}>Manages all paperwork & payments</div>
+                        </div>
+                        <ArrowRight size={28} style={{ color: 'rgba(255,255,255,0.5)' }} />
+                        <div style={{
+                            background: 'rgba(255,255,255,0.1)',
+                            borderRadius: '16px',
+                            padding: '1.5rem 2rem',
+                            textAlign: 'center',
+                            border: '2px solid rgba(255,255,255,0.2)'
+                        }}>
+                            <HeartIcon size={32} />
+                            <div style={{ marginTop: '0.5rem', fontWeight: '600' }}>Licensed Providers</div>
+                            <div style={{ fontSize: '0.85rem', color: 'rgba(255,255,255,0.7)' }}>Direct payment</div>
+                        </div>
+                    </div>
+
+                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '2rem' }}>
+                        {[
+                            {
+                                icon: <GiftIcon size={32} />,
+                                title: 'Philanthropic Matching',
+                                desc: 'Gary provides matching funds from philanthropic sources to amplify your investment and reduce your net cost per employee.'
+                            },
+                            {
+                                icon: <ShieldIcon size={32} />,
+                                title: 'Restricted Wallet Infrastructure',
+                                desc: 'Funds flow directly from your business to licensed providers via Gary. No taxable "cash-in-hand" for employees.'
+                            },
+                            {
+                                icon: <UsersIcon size={32} />,
+                                title: 'Provider Network Access',
+                                desc: 'We manage relationships with licensed Colorado childcare providers. Your employees choose from vetted, qualified facilities.'
+                            }
+                        ].map((item, i) => (
+                            <div key={i} style={{
+                                background: 'rgba(255,255,255,0.05)',
+                                borderRadius: '16px',
+                                padding: '2rem',
+                                border: '1px solid rgba(255,255,255,0.1)'
+                            }}>
+                                <div style={{ color: '#667eea', marginBottom: '1rem' }}>{item.icon}</div>
+                                <h3 style={{ fontSize: '1.25rem', fontWeight: '600', marginBottom: '0.75rem' }}>{item.title}</h3>
+                                <p style={{ color: 'rgba(255,255,255,0.7)', fontSize: '0.95rem', lineHeight: '1.6' }}>{item.desc}</p>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            </section>
+        );
+
+        // Matching Section
+        const MatchingSection = () => (
+            <section id="matching" style={{ padding: '6rem 2rem', background: '#f8fafc' }}>
+                <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
+                    <div style={{ textAlign: 'center', marginBottom: '4rem' }}>
+                        <h2 style={{ fontFamily: 'Crimson Pro, serif', fontSize: '2.5rem', fontWeight: '700', color: '#1a1a2e', marginBottom: '1rem' }}>
+                            Philanthropic Matching Program
+                        </h2>
+                        <p style={{ fontSize: '1.1rem', color: '#4a5568', maxWidth: '700px', margin: '0 auto' }}>
+                            Gary Community Ventures uses philanthropic funds to match employer contributions,
+                            reducing your costs while maximizing the benefit for working families.
+                        </p>
+                    </div>
+
+                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '2rem', marginBottom: '3rem' }}>
+                        {/* Example Cards for different match levels */}
+                        {[
+                            { match: '50%', employerCost: '$250', totalBenefit: '$500', highlight: true },
+                            { match: '40%', employerCost: '$300', totalBenefit: '$500', highlight: false },
+                            { match: '30%', employerCost: '$350', totalBenefit: '$500', highlight: false }
+                        ].map((item, i) => (
+                            <div key={i} style={{
+                                background: item.highlight ? 'linear-gradient(135deg, #2c5364 0%, #203a43 100%)' : 'white',
+                                borderRadius: '20px',
+                                padding: '2rem',
+                                boxShadow: item.highlight ? '0 10px 40px rgba(44,83,100,0.3)' : '0 10px 40px rgba(0,0,0,0.08)',
+                                color: item.highlight ? 'white' : '#1a1a2e',
+                                position: 'relative',
+                                border: item.highlight ? 'none' : '2px solid #e2e8f0'
+                            }}>
+                                {item.highlight && (
+                                    <div style={{
+                                        position: 'absolute',
+                                        top: '-12px',
+                                        right: '20px',
+                                        background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+                                        padding: '0.3rem 0.75rem',
+                                        borderRadius: '100px',
+                                        fontSize: '0.75rem',
+                                        fontWeight: '600',
+                                        color: 'white'
+                                    }}>Example</div>
+                                )}
+                                <div style={{
+                                    fontSize: '2.5rem',
+                                    fontWeight: '700',
+                                    marginBottom: '0.5rem',
+                                    color: item.highlight ? 'white' : '#2c5364'
+                                }}>{item.match}</div>
+                                <div style={{
+                                    fontSize: '1rem',
+                                    fontWeight: '600',
+                                    marginBottom: '1.5rem',
+                                    color: item.highlight ? 'rgba(255,255,255,0.8)' : '#718096'
+                                }}>Philanthropic Match</div>
+                                <div style={{ borderTop: item.highlight ? '1px solid rgba(255,255,255,0.2)' : '1px solid #e2e8f0', paddingTop: '1rem' }}>
+                                    <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '0.5rem' }}>
+                                        <span style={{ color: item.highlight ? 'rgba(255,255,255,0.7)' : '#718096' }}>Your cost/employee/month</span>
+                                        <span style={{ fontWeight: '600' }}>{item.employerCost}</span>
+                                    </div>
+                                    <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+                                        <span style={{ color: item.highlight ? 'rgba(255,255,255,0.7)' : '#718096' }}>Total benefit to employee</span>
+                                        <span style={{ fontWeight: '600' }}>{item.totalBenefit}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+
+                    {/* Important Note */}
+                    <div style={{
+                        background: 'linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%)',
+                        borderRadius: '16px',
+                        padding: '1.5rem 2rem',
+                        display: 'flex',
+                        alignItems: 'flex-start',
+                        gap: '1rem'
+                    }}>
+                        <div style={{ color: '#1e40af', marginTop: '2px' }}>
+                            <GiftIcon size={24} />
+                        </div>
+                        <div>
+                            <div style={{ fontWeight: '700', color: '#1e40af', marginBottom: '0.25rem' }}>How Matching Works</div>
+                            <div style={{ color: '#1e3a8a', fontSize: '0.95rem' }}>
+                                Your contribution goes directly to licensed childcare providers on behalf of your employees.
+                                Gary adds philanthropic matching funds to increase the total benefit—so your employees receive more support
+                                while your costs stay manageable.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        );
+
+        // Calculator Section
+        const CalculatorSection = () => {
+            const [inputs, setInputs] = useState({
+                employees: 10,
+                totalBenefit: 500,
+                matchRate: 50,
+                avgSalary: 60000,
+                turnoverRate: 15
+            });
+
+            const employerContribution = inputs.totalBenefit * (1 - inputs.matchRate / 100);
+            const annualEmployerCost = inputs.employees * employerContribution * 12;
+            const totalAnnualBenefit = inputs.employees * inputs.totalBenefit * 12;
+            const matchAmount = totalAnnualBenefit - annualEmployerCost;
+
+            // ROI calculations
+            const replacementCost = inputs.avgSalary * 0.85;
+            const turnoverReduction = 0.37;
+            const currentTurnoverCost = inputs.employees * (inputs.turnoverRate / 100) * replacementCost;
+            const newTurnoverCost = inputs.employees * ((inputs.turnoverRate / 100) * (1 - turnoverReduction)) * replacementCost;
+            const turnoverSavings = currentTurnoverCost - newTurnoverCost;
+
+            const absenteeismReduction = 0.25;
+            const daysLostPerYear = 9;
+            const dailyWage = inputs.avgSalary / 260;
+            const absenteeismSavings = inputs.employees * daysLostPerYear * absenteeismReduction * dailyWage;
+
+            const totalSavings = turnoverSavings + absenteeismSavings;
+            const roi = ((totalSavings - annualEmployerCost) / annualEmployerCost) * 100;
+
+            return (
+                <section id="calculator" style={{ padding: '6rem 2rem', background: '#ffffff' }}>
+                    <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
+                        <div style={{ textAlign: 'center', marginBottom: '4rem' }}>
+                            <h2 style={{ fontFamily: 'Crimson Pro, serif', fontSize: '2.5rem', fontWeight: '700', color: '#1a1a2e', marginBottom: '1rem' }}>
+                                Calculate Your Childcare ROI
+                            </h2>
+                            <p style={{ fontSize: '1.1rem', color: '#4a5568', maxWidth: '700px', margin: '0 auto' }}>
+                                See how much you could save with employer-sponsored childcare benefits and philanthropic matching.
+                            </p>
+                        </div>
+
+                        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '3rem' }}>
+                            {/* Inputs */}
+                            <div style={{
+                                background: '#f8fafc',
+                                borderRadius: '20px',
+                                padding: '2.5rem'
+                            }}>
+                                <h3 style={{ fontFamily: 'Crimson Pro, serif', fontSize: '1.5rem', marginBottom: '2rem' }}>Your Company</h3>
+
+                                {/* Employees Slider */}
+                                <div style={{ marginBottom: '2rem' }}>
+                                    <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '0.5rem' }}>
+                                        <label style={{ fontWeight: '600', color: '#1a1a2e' }}>Employees to Enroll</label>
+                                        <span style={{ fontWeight: '700', color: '#2c5364' }}>{inputs.employees}</span>
+                                    </div>
+                                    <input
+                                        type="range"
+                                        min="5"
+                                        max="200"
+                                        value={inputs.employees}
+                                        onChange={(e) => setInputs({...inputs, employees: parseInt(e.target.value)})}
+                                        style={{ width: '100%', accentColor: '#2c5364' }}
+                                    />
+                                    <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.8rem', color: '#718096' }}>
+                                        <span>5</span>
+                                        <span>200</span>
+                                    </div>
+                                </div>
+
+                                {/* Total Benefit Slider */}
+                                <div style={{ marginBottom: '2rem' }}>
+                                    <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '0.5rem' }}>
+                                        <label style={{ fontWeight: '600', color: '#1a1a2e' }}>Total Monthly Benefit per Employee</label>
+                                        <span style={{ fontWeight: '700', color: '#2c5364' }}>${inputs.totalBenefit}</span>
+                                    </div>
+                                    <input
+                                        type="range"
+                                        min="250"
+                                        max="1000"
+                                        step="50"
+                                        value={inputs.totalBenefit}
+                                        onChange={(e) => setInputs({...inputs, totalBenefit: parseInt(e.target.value)})}
+                                        style={{ width: '100%', accentColor: '#2c5364' }}
+                                    />
+                                    <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.8rem', color: '#718096' }}>
+                                        <span>$250</span>
+                                        <span>$1,000</span>
+                                    </div>
+                                </div>
+
+                                {/* Match Rate Slider */}
+                                <div style={{ marginBottom: '2rem' }}>
+                                    <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '0.5rem' }}>
+                                        <label style={{ fontWeight: '600', color: '#1a1a2e' }}>Philanthropic Match Rate</label>
+                                        <span style={{ fontWeight: '700', color: '#667eea' }}>{inputs.matchRate}%</span>
+                                    </div>
+                                    <input
+                                        type="range"
+                                        min="10"
+                                        max="50"
+                                        step="10"
+                                        value={inputs.matchRate}
+                                        onChange={(e) => setInputs({...inputs, matchRate: parseInt(e.target.value)})}
+                                        style={{ width: '100%', accentColor: '#667eea' }}
+                                    />
+                                    <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.8rem', color: '#718096' }}>
+                                        <span>10%</span>
+                                        <span>50%</span>
+                                    </div>
+                                </div>
+
+                                {/* Average Salary Slider */}
+                                <div style={{ marginBottom: '2rem' }}>
+                                    <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '0.5rem' }}>
+                                        <label style={{ fontWeight: '600', color: '#1a1a2e' }}>Average Employee Salary</label>
+                                        <span style={{ fontWeight: '700', color: '#2c5364' }}>${inputs.avgSalary.toLocaleString()}</span>
+                                    </div>
+                                    <input
+                                        type="range"
+                                        min="35000"
+                                        max="150000"
+                                        step="5000"
+                                        value={inputs.avgSalary}
+                                        onChange={(e) => setInputs({...inputs, avgSalary: parseInt(e.target.value)})}
+                                        style={{ width: '100%', accentColor: '#2c5364' }}
+                                    />
+                                    <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.8rem', color: '#718096' }}>
+                                        <span>$35K</span>
+                                        <span>$150K</span>
+                                    </div>
+                                </div>
+
+                                {/* Turnover Rate Slider */}
+                                <div>
+                                    <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '0.5rem' }}>
+                                        <label style={{ fontWeight: '600', color: '#1a1a2e' }}>Current Annual Turnover Rate</label>
+                                        <span style={{ fontWeight: '700', color: '#2c5364' }}>{inputs.turnoverRate}%</span>
+                                    </div>
+                                    <input
+                                        type="range"
+                                        min="5"
+                                        max="40"
+                                        value={inputs.turnoverRate}
+                                        onChange={(e) => setInputs({...inputs, turnoverRate: parseInt(e.target.value)})}
+                                        style={{ width: '100%', accentColor: '#2c5364' }}
+                                    />
+                                    <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.8rem', color: '#718096' }}>
+                                        <span>5%</span>
+                                        <span>40%</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            {/* Results */}
+                            <div>
+                                {/* Cost Breakdown */}
+                                <div style={{
+                                    background: 'white',
+                                    borderRadius: '20px',
+                                    padding: '2rem',
+                                    boxShadow: '0 10px 40px rgba(0,0,0,0.08)',
+                                    marginBottom: '1.5rem'
+                                }}>
+                                    <h3 style={{ fontFamily: 'Crimson Pro, serif', fontSize: '1.25rem', marginBottom: '1.5rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                                        <DollarIcon size={24} /> Cost Breakdown
+                                    </h3>
+                                    <div style={{ display: 'flex', justifyContent: 'space-between', padding: '0.75rem 0', borderBottom: '1px solid #e2e8f0' }}>
+                                        <span style={{ color: '#718096' }}>Total Annual Benefit to Employees</span>
+                                        <span style={{ fontWeight: '600' }}>${totalAnnualBenefit.toLocaleString()}</span>
+                                    </div>
+                                    <div style={{ display: 'flex', justifyContent: 'space-between', padding: '0.75rem 0', borderBottom: '1px solid #e2e8f0', color: '#667eea' }}>
+                                        <span>Philanthropic Match ({inputs.matchRate}%)</span>
+                                        <span style={{ fontWeight: '700' }}>-${matchAmount.toLocaleString()}</span>
+                                    </div>
+                                    <div style={{
+                                        display: 'flex',
+                                        justifyContent: 'space-between',
+                                        padding: '1rem',
+                                        marginTop: '0.5rem',
+                                        background: 'linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%)',
+                                        borderRadius: '8px'
+                                    }}>
+                                        <span style={{ fontWeight: '700', color: '#166534' }}>Your Annual Cost</span>
+                                        <span style={{ fontWeight: '700', fontSize: '1.25rem', color: '#166534' }}>${annualEmployerCost.toLocaleString()}</span>
+                                    </div>
+                                    <div style={{ textAlign: 'center', marginTop: '1rem', color: '#718096', fontSize: '0.9rem' }}>
+                                        ${employerContribution.toFixed(0)}/employee/month (your contribution)
+                                    </div>
+                                </div>
+
+                                {/* ROI Analysis */}
+                                <div style={{
+                                    background: 'linear-gradient(135deg, #2c5364 0%, #203a43 100%)',
+                                    borderRadius: '20px',
+                                    padding: '2rem',
+                                    color: 'white'
+                                }}>
+                                    <h3 style={{ fontFamily: 'Crimson Pro, serif', fontSize: '1.25rem', marginBottom: '1.5rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                                        <TrendingUpIcon size={24} /> Estimated Annual Savings
+                                    </h3>
+                                    <div style={{ display: 'flex', justifyContent: 'space-between', padding: '0.75rem 0', borderBottom: '1px solid rgba(255,255,255,0.2)' }}>
+                                        <span style={{ color: 'rgba(255,255,255,0.8)' }}>Turnover Cost Reduction (37%)</span>
+                                        <span style={{ fontWeight: '600' }}>+${Math.round(turnoverSavings).toLocaleString()}</span>
+                                    </div>
+                                    <div style={{ display: 'flex', justifyContent: 'space-between', padding: '0.75rem 0', borderBottom: '1px solid rgba(255,255,255,0.2)' }}>
+                                        <span style={{ color: 'rgba(255,255,255,0.8)' }}>Absenteeism Reduction (25%)</span>
+                                        <span style={{ fontWeight: '600' }}>+${Math.round(absenteeismSavings).toLocaleString()}</span>
+                                    </div>
+                                    <div style={{
+                                        display: 'flex',
+                                        justifyContent: 'space-between',
+                                        padding: '1rem',
+                                        marginTop: '1rem',
+                                        background: 'rgba(255,255,255,0.1)',
+                                        borderRadius: '8px'
+                                    }}>
+                                        <span style={{ fontWeight: '700' }}>Total Estimated Savings</span>
+                                        <span style={{ fontWeight: '700', fontSize: '1.25rem' }}>+${Math.round(totalSavings).toLocaleString()}</span>
+                                    </div>
+                                    <div style={{
+                                        textAlign: 'center',
+                                        marginTop: '1.5rem',
+                                        padding: '1.5rem',
+                                        background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+                                        borderRadius: '12px'
+                                    }}>
+                                        <div style={{ fontSize: '0.9rem', marginBottom: '0.25rem' }}>Estimated ROI</div>
+                                        <div style={{ fontSize: '2.5rem', fontWeight: '700' }}>{roi > 0 ? '+' : ''}{Math.round(roi)}%</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        {/* Methodology note */}
+                        <div style={{ marginTop: '2rem', padding: '1.5rem', background: '#f1f5f9', borderRadius: '12px' }}>
+                            <p style={{ fontSize: '0.85rem', color: '#64748b', textAlign: 'center' }}>
+                                <strong>Methodology:</strong> Turnover reduction of 37% and absenteeism reduction of 25% based on US Chamber of Commerce research.
+                                Replacement cost estimated at 85% of annual salary. Actual results may vary based on your specific workforce composition.
+                            </p>
+                        </div>
+                    </div>
+                </section>
+            );
+        };
+
+        // Benefits Section
+        const BenefitsSection = () => (
+            <section style={{ padding: '6rem 2rem', background: '#f8fafc' }}>
+                <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
+                    <div style={{ textAlign: 'center', marginBottom: '4rem' }}>
+                        <h2 style={{ fontFamily: 'Crimson Pro, serif', fontSize: '2.5rem', fontWeight: '700', color: '#1a1a2e', marginBottom: '1rem' }}>
+                            The Business Case for Childcare Benefits
+                        </h2>
+                        <p style={{ fontSize: '1.1rem', color: '#4a5568', maxWidth: '700px', margin: '0 auto' }}>
+                            Research consistently shows that childcare benefits deliver measurable ROI through reduced turnover,
+                            lower absenteeism, and improved productivity.
+                        </p>
+                    </div>
+
+                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '2rem' }}>
+                        {[
+                            {
+                                stat: '37-60%',
+                                title: 'Reduction in Turnover',
+                                source: 'US Chamber of Commerce',
+                                desc: 'Employees are significantly more likely to stay when childcare benefits are provided.'
+                            },
+                            {
+                                stat: '20-30%',
+                                title: 'Decrease in Absences',
+                                source: 'US Chamber of Commerce',
+                                desc: 'Parents avoid 4-16 days of absences annually with reliable childcare access.'
+                            },
+                            {
+                                stat: '90-425%',
+                                title: 'ROI Range',
+                                source: 'BCG/Moms First Study',
+                                desc: 'Five companies studied showed significant returns on childcare investment.'
+                            },
+                            {
+                                stat: '82-86%',
+                                title: 'Increased Loyalty',
+                                source: 'BCG Research',
+                                desc: 'Of employees report being more likely to stay because of childcare benefits.'
+                            },
+                            {
+                                stat: '1-12%',
+                                title: 'Break-Even Retention',
+                                source: 'Catalyst.org',
+                                desc: 'Childcare benefits need to retain only 1-12% of eligible employees to break even.'
+                            },
+                            {
+                                stat: '81%',
+                                title: 'Recruitment Impact',
+                                source: 'Care.com',
+                                desc: 'Of employers report childcare benefits positively impact recruitment.'
+                            }
+                        ].map((item, i) => (
+                            <div key={i} style={{
+                                background: 'white',
+                                borderRadius: '16px',
+                                padding: '2rem',
+                                boxShadow: '0 4px 15px rgba(0,0,0,0.05)',
+                                transition: 'transform 0.2s ease, box-shadow 0.2s ease'
+                            }}>
+                                <div style={{ fontSize: '2.25rem', fontWeight: '700', color: '#2c5364', marginBottom: '0.5rem' }}>{item.stat}</div>
+                                <div style={{ fontSize: '1.1rem', fontWeight: '600', color: '#1a1a2e', marginBottom: '0.5rem' }}>{item.title}</div>
+                                <div style={{ fontSize: '0.8rem', color: '#667eea', fontWeight: '600', marginBottom: '0.75rem' }}>{item.source}</div>
+                                <p style={{ fontSize: '0.9rem', color: '#718096', lineHeight: '1.5' }}>{item.desc}</p>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            </section>
+        );
+
+        // Signup Section
+        const SignupSection = () => {
+            const [formData, setFormData] = useState({
+                companyName: '',
+                contactName: '',
+                email: '',
+                phone: '',
+                employeeCount: '',
+                matchLevel: '',
+                interest: ''
+            });
+            const [submitted, setSubmitted] = useState(false);
+
+            const handleSubmit = (e) => {
+                e.preventDefault();
+                console.log('Form submitted:', formData);
+                setSubmitted(true);
+            };
+
+            return (
+                <section id="signup" style={{ padding: '6rem 2rem', background: 'linear-gradient(135deg, #1a1a2e 0%, #2c5364 100%)', color: 'white' }}>
+                    <div style={{ maxWidth: '800px', margin: '0 auto' }}>
+                        <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
+                            <div style={{
+                                display: 'inline-flex',
+                                alignItems: 'center',
+                                gap: '0.5rem',
+                                background: 'rgba(255,255,255,0.1)',
+                                padding: '0.5rem 1rem',
+                                borderRadius: '100px',
+                                marginBottom: '1.5rem'
+                            }}>
+                                <span style={{ fontSize: '0.85rem', fontWeight: '600' }}>Limited to 3-5 Pilot Employers</span>
+                            </div>
+                            <h2 style={{ fontFamily: 'Crimson Pro, serif', fontSize: '2.5rem', fontWeight: '700', marginBottom: '1rem' }}>
+                                Join the 2026 Pilot Program
+                            </h2>
+                            <p style={{ fontSize: '1.1rem', color: 'rgba(255,255,255,0.8)', maxWidth: '600px', margin: '0 auto' }}>
+                                We're seeking Colorado employers who are interested in providing childcare benefits
+                                with philanthropic matching support. There is no cost to participate in the pilot.
+                            </p>
+                        </div>
+
+                        {!submitted ? (
+                            <form onSubmit={handleSubmit} style={{
+                                background: 'white',
+                                borderRadius: '20px',
+                                padding: '2.5rem',
+                                color: '#1a1a2e'
+                            }}>
+                                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.5rem', marginBottom: '1.5rem' }}>
+                                    <div>
+                                        <label style={{ display: 'block', fontWeight: '600', marginBottom: '0.5rem' }}>Company Name *</label>
+                                        <input
+                                            type="text"
+                                            required
+                                            value={formData.companyName}
+                                            onChange={(e) => setFormData({...formData, companyName: e.target.value})}
+                                            style={{
+                                                width: '100%',
+                                                padding: '0.75rem 1rem',
+                                                borderRadius: '8px',
+                                                border: '2px solid #e2e8f0',
+                                                fontSize: '1rem',
+                                                transition: 'border-color 0.2s ease'
+                                            }}
+                                        />
+                                    </div>
+                                    <div>
+                                        <label style={{ display: 'block', fontWeight: '600', marginBottom: '0.5rem' }}>Contact Name *</label>
+                                        <input
+                                            type="text"
+                                            required
+                                            value={formData.contactName}
+                                            onChange={(e) => setFormData({...formData, contactName: e.target.value})}
+                                            style={{
+                                                width: '100%',
+                                                padding: '0.75rem 1rem',
+                                                borderRadius: '8px',
+                                                border: '2px solid #e2e8f0',
+                                                fontSize: '1rem'
+                                            }}
+                                        />
+                                    </div>
+                                </div>
+                                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.5rem', marginBottom: '1.5rem' }}>
+                                    <div>
+                                        <label style={{ display: 'block', fontWeight: '600', marginBottom: '0.5rem' }}>Email *</label>
+                                        <input
+                                            type="email"
+                                            required
+                                            value={formData.email}
+                                            onChange={(e) => setFormData({...formData, email: e.target.value})}
+                                            style={{
+                                                width: '100%',
+                                                padding: '0.75rem 1rem',
+                                                borderRadius: '8px',
+                                                border: '2px solid #e2e8f0',
+                                                fontSize: '1rem'
+                                            }}
+                                        />
+                                    </div>
+                                    <div>
+                                        <label style={{ display: 'block', fontWeight: '600', marginBottom: '0.5rem' }}>Phone</label>
+                                        <input
+                                            type="tel"
+                                            value={formData.phone}
+                                            onChange={(e) => setFormData({...formData, phone: e.target.value})}
+                                            style={{
+                                                width: '100%',
+                                                padding: '0.75rem 1rem',
+                                                borderRadius: '8px',
+                                                border: '2px solid #e2e8f0',
+                                                fontSize: '1rem'
+                                            }}
+                                        />
+                                    </div>
+                                </div>
+                                <div style={{ marginBottom: '1.5rem' }}>
+                                    <label style={{ display: 'block', fontWeight: '600', marginBottom: '0.5rem' }}>Number of Employees *</label>
+                                    <select
+                                        required
+                                        value={formData.employeeCount}
+                                        onChange={(e) => setFormData({...formData, employeeCount: e.target.value})}
+                                        style={{
+                                            width: '100%',
+                                            padding: '0.75rem 1rem',
+                                            borderRadius: '8px',
+                                            border: '2px solid #e2e8f0',
+                                            fontSize: '1rem',
+                                            background: 'white'
+                                        }}
+                                    >
+                                        <option value="">Select range</option>
+                                        <option value="20-100">20-100 employees</option>
+                                        <option value="101-500">101-500 employees</option>
+                                        <option value="501-1000">501-1000 employees</option>
+                                        <option value="1000+">1000+ employees</option>
+                                    </select>
+                                </div>
+
+                                {/* Match Level Question */}
+                                <div style={{ marginBottom: '1.5rem' }}>
+                                    <label style={{ display: 'block', fontWeight: '600', marginBottom: '0.5rem' }}>
+                                        At what match level would you participate? *
+                                    </label>
+                                    <p style={{ fontSize: '0.85rem', color: '#718096', marginBottom: '0.75rem' }}>
+                                        We have limited philanthropic funding and will prioritize employers based on match level.
+                                        We will only contact employers within the match band we're able to fund.
+                                    </p>
+                                    <select
+                                        required
+                                        value={formData.matchLevel}
+                                        onChange={(e) => setFormData({...formData, matchLevel: e.target.value})}
+                                        style={{
+                                            width: '100%',
+                                            padding: '0.75rem 1rem',
+                                            borderRadius: '8px',
+                                            border: '2px solid #e2e8f0',
+                                            fontSize: '1rem',
+                                            background: 'white'
+                                        }}
+                                    >
+                                        <option value="">Select minimum match level you'd need</option>
+                                        <option value="10%">10% match (I'd pay 90% of the benefit)</option>
+                                        <option value="20%">20% match (I'd pay 80% of the benefit)</option>
+                                        <option value="30%">30% match (I'd pay 70% of the benefit)</option>
+                                        <option value="40%">40% match (I'd pay 60% of the benefit)</option>
+                                        <option value="50%">50% match (I'd pay 50% of the benefit)</option>
+                                    </select>
+                                </div>
+
+                                <div style={{ marginBottom: '2rem' }}>
+                                    <label style={{ display: 'block', fontWeight: '600', marginBottom: '0.5rem' }}>What interests you most about this program?</label>
+                                    <textarea
+                                        value={formData.interest}
+                                        onChange={(e) => setFormData({...formData, interest: e.target.value})}
+                                        rows={3}
+                                        style={{
+                                            width: '100%',
+                                            padding: '0.75rem 1rem',
+                                            borderRadius: '8px',
+                                            border: '2px solid #e2e8f0',
+                                            fontSize: '1rem',
+                                            resize: 'vertical'
+                                        }}
+                                        placeholder="e.g., employee retention, reducing admin burden, supporting working families..."
+                                    />
+                                </div>
+                                <button
+                                    type="submit"
+                                    style={{
+                                        width: '100%',
+                                        padding: '1rem',
+                                        background: 'linear-gradient(135deg, #2c5364 0%, #203a43 100%)',
+                                        color: 'white',
+                                        border: 'none',
+                                        borderRadius: '10px',
+                                        fontSize: '1.1rem',
+                                        fontWeight: '600',
+                                        cursor: 'pointer',
+                                        display: 'flex',
+                                        alignItems: 'center',
+                                        justifyContent: 'center',
+                                        gap: '0.5rem',
+                                        boxShadow: '0 4px 15px rgba(44,83,100,0.3)'
+                                    }}
+                                >
+                                    Apply for the Pilot <ArrowRight size={20} />
+                                </button>
+                            </form>
+                        ) : (
+                            <div style={{
+                                background: 'white',
+                                borderRadius: '20px',
+                                padding: '3rem',
+                                textAlign: 'center',
+                                color: '#1a1a2e'
+                            }}>
+                                <div style={{
+                                    width: '80px',
+                                    height: '80px',
+                                    background: 'linear-gradient(135deg, #10b981 0%, #059669 100%)',
+                                    borderRadius: '50%',
+                                    display: 'flex',
+                                    alignItems: 'center',
+                                    justifyContent: 'center',
+                                    margin: '0 auto 1.5rem',
+                                    color: 'white'
+                                }}>
+                                    <CheckIcon size={40} />
+                                </div>
+                                <h3 style={{ fontFamily: 'Crimson Pro, serif', fontSize: '1.75rem', marginBottom: '1rem' }}>
+                                    Thank You for Your Interest!
+                                </h3>
+                                <p style={{ color: '#4a5568', marginBottom: '1.5rem' }}>
+                                    We'll review your application and contact you if your match level aligns with our available funding.
+                                </p>
+                                <p style={{ color: '#718096', fontSize: '0.9rem' }}>
+                                    Questions? Contact Leisan Garifullina at<br />
+                                    <a href="mailto:leisang@garycommunity.org" style={{ color: '#2c5364', fontWeight: '600' }}>leisang@garycommunity.org</a>
+                                </p>
+                            </div>
+                        )}
+
+                        <p style={{ textAlign: 'center', marginTop: '1.5rem', color: 'rgba(255,255,255,0.7)', fontSize: '0.9rem' }}>
+                            Or contact Leisan Garifullina directly at <a href="mailto:leisang@garycommunity.org" style={{ color: 'white', fontWeight: '600' }}>leisang@garycommunity.org</a>
+                        </p>
+                    </div>
+                </section>
+            );
+        };
+
+        // Footer
+        const Footer = () => (
+            <footer style={{ padding: '3rem 2rem', background: '#0f172a', color: 'rgba(255,255,255,0.7)' }}>
+                <div style={{ maxWidth: '1200px', margin: '0 auto', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+                        <div style={{
+                            width: '36px',
+                            height: '36px',
+                            background: 'linear-gradient(135deg, #2c5364 0%, #203a43 100%)',
+                            borderRadius: '8px',
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                            color: 'white',
+                            fontWeight: '700'
+                        }}>G</div>
+                        <span style={{ fontFamily: 'Crimson Pro, serif', fontSize: '1.1rem', color: 'white' }}>Gary Community Ventures</span>
+                    </div>
+                    <div style={{ fontSize: '0.9rem' }}>
+                        &copy; 2026 Gary Community Ventures. Improving outcomes for kids and families.
+                    </div>
+                </div>
+            </footer>
+        );
+
+        // Main App
+        const App = () => (
+            <div>
+                <Navigation />
+                <HeroSection />
+                <SignupSection />
+                <ProblemSection />
+                <HowItWorksSection />
+                <MatchingSection />
+                <CalculatorSection />
+                <BenefitsSection />
+                <Footer />
+            </div>
+        );
+
+        ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+    </script>
+</body>
+</html>

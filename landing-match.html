@@ -110,6 +110,20 @@
             </svg>
         );
 
+        const QuestionIcon = ({ size = 24 }) => (
+            <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <circle cx="12" cy="12" r="10"></circle>
+                <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
+                <line x1="12" y1="17" x2="12.01" y2="17"></line>
+            </svg>
+        );
+
+        const ChevronDownIcon = ({ size = 24 }) => (
+            <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+        );
+
         // Navigation Component
         const Navigation = () => {
             const [scrolled, setScrolled] = useState(false);
@@ -159,6 +173,7 @@
                         <a href="#how-it-works" style={{ color: '#1a1a2e', textDecoration: 'none', fontWeight: '500', fontSize: '0.95rem' }}>How It Works</a>
                         <a href="#calculator" style={{ color: '#1a1a2e', textDecoration: 'none', fontWeight: '500', fontSize: '0.95rem' }}>ROI Calculator</a>
                         <a href="#matching" style={{ color: '#1a1a2e', textDecoration: 'none', fontWeight: '500', fontSize: '0.95rem' }}>Matching Program</a>
+                        <a href="#faq" style={{ color: '#1a1a2e', textDecoration: 'none', fontWeight: '500', fontSize: '0.95rem' }}>FAQ</a>
                         <a href="#signup" style={{
                             background: 'linear-gradient(135deg, #2c5364 0%, #203a43 100%)',
                             color: 'white',
@@ -569,6 +584,129 @@
             </section>
         );
 
+        // FAQ Section
+        const FAQSection = () => {
+            const [openIndex, setOpenIndex] = useState(null);
+
+            const faqs = [
+                {
+                    question: "Who is running this pilot program?",
+                    answer: "This pilot is led by Gary Community Ventures, a Colorado-based organization dedicated to improving outcomes for kids and families. Gary works at the intersection of policy, philanthropy, and community investment to create systemic change. We're exploring innovative approaches to make quality childcare more accessible and affordable for working families across Colorado."
+                },
+                {
+                    question: "How long will the pilot run?",
+                    answer: "We're currently in the planning phase and are gathering input from interested employers to help shape the pilot's structure. The exact duration will depend on several factors, including available philanthropic matching funds, the number of participating employers, and the specific needs of enrolled families. We anticipate sharing more details as we finalize the program design."
+                },
+                {
+                    question: "How many employees can my company enroll?",
+                    answer: "Enrollment capacity will be determined based on input from participating companies and available philanthropic funding. We're gathering information from interested employers to understand workforce needs and will work with each pilot participant to determine appropriate enrollment levels that make sense for their organization and our matching capacity."
+                },
+                {
+                    question: "I just filled out the form. Does that mean I'm committing to the pilot?",
+                    answer: "No, filling out the interest form does not constitute a commitment. We're currently gathering information to understand employer interest and needs. Submitting the form simply indicates that you'd like to learn more and potentially be considered for participation. There will be additional conversations and a separate formal agreement process before any commitments are made."
+                },
+                {
+                    question: "What information are you gathering at this stage?",
+                    answer: "We're collecting preliminary information to help us understand employer interest, workforce sizes, and what match levels would be meaningful for potential participants. This helps us design a pilot that works for Colorado employers and their employees. We're still in the exploratory phase and welcome your input to shape the program."
+                },
+                {
+                    question: "Is there a cost to express interest?",
+                    answer: "There is no cost or obligation to express interest. We're simply gathering information at this stage to understand employer needs and gauge interest in the tri-share model. Participating in the pilot itself would involve employer contributions as part of the shared-responsibility model, but those details will be discussed in depth before any commitments are made."
+                },
+                {
+                    question: "What types of childcare providers are included?",
+                    answer: "We're working to build a network of licensed Colorado childcare providers, including childcare centers and licensed family childcare homes. The specific provider network is still being developed, and we welcome input from employers about what would be most valuable for their employees' needs and locations."
+                }
+            ];
+
+            return (
+                <section id="faq" style={{ padding: '6rem 2rem', background: '#ffffff' }}>
+                    <div style={{ maxWidth: '900px', margin: '0 auto' }}>
+                        <div style={{ textAlign: 'center', marginBottom: '4rem' }}>
+                            <h2 style={{ fontFamily: 'Crimson Pro, serif', fontSize: '2.5rem', fontWeight: '700', color: '#1a1a2e', marginBottom: '1rem' }}>
+                                Frequently Asked Questions
+                            </h2>
+                            <p style={{ fontSize: '1.1rem', color: '#4a5568', maxWidth: '700px', margin: '0 auto' }}>
+                                We're still shaping this pilot program and welcome your questions. Here's what we can share so far.
+                            </p>
+                        </div>
+
+                        <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+                            {faqs.map((faq, index) => (
+                                <div
+                                    key={index}
+                                    style={{
+                                        background: openIndex === index ? '#f8fafc' : 'white',
+                                        borderRadius: '12px',
+                                        border: '2px solid #e2e8f0',
+                                        overflow: 'hidden',
+                                        transition: 'all 0.2s ease'
+                                    }}
+                                >
+                                    <button
+                                        onClick={() => setOpenIndex(openIndex === index ? null : index)}
+                                        style={{
+                                            width: '100%',
+                                            padding: '1.25rem 1.5rem',
+                                            display: 'flex',
+                                            justifyContent: 'space-between',
+                                            alignItems: 'center',
+                                            background: 'none',
+                                            border: 'none',
+                                            cursor: 'pointer',
+                                            textAlign: 'left'
+                                        }}
+                                    >
+                                        <span style={{
+                                            fontWeight: '600',
+                                            fontSize: '1.05rem',
+                                            color: '#1a1a2e',
+                                            paddingRight: '1rem'
+                                        }}>
+                                            {faq.question}
+                                        </span>
+                                        <div style={{
+                                            transform: openIndex === index ? 'rotate(180deg)' : 'rotate(0)',
+                                            transition: 'transform 0.2s ease',
+                                            color: '#2c5364',
+                                            flexShrink: 0
+                                        }}>
+                                            <ChevronDownIcon size={20} />
+                                        </div>
+                                    </button>
+                                    {openIndex === index && (
+                                        <div style={{
+                                            padding: '0 1.5rem 1.25rem 1.5rem',
+                                            color: '#4a5568',
+                                            lineHeight: '1.7',
+                                            fontSize: '0.95rem'
+                                        }}>
+                                            {faq.answer}
+                                        </div>
+                                    )}
+                                </div>
+                            ))}
+                        </div>
+
+                        <div style={{
+                            marginTop: '3rem',
+                            padding: '1.5rem 2rem',
+                            background: 'linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%)',
+                            borderRadius: '12px',
+                            textAlign: 'center'
+                        }}>
+                            <p style={{ color: '#166534', fontSize: '0.95rem' }}>
+                                <strong>Have more questions?</strong> We'd love to hear from you. Contact Leisan Garifullina at{' '}
+                                <a href="mailto:leisang@garycommunity.org" style={{ color: '#166534', fontWeight: '600' }}>
+                                    leisang@garycommunity.org
+                                </a>
+                            </p>
+                        </div>
+                    </div>
+                </section>
+            );
+        };
+
         // Calculator Section
         const CalculatorSection = () => {
             const [inputs, setInputs] = useState({
@@ -926,7 +1064,8 @@
                             </h2>
                             <p style={{ fontSize: '1.1rem', color: 'rgba(255,255,255,0.8)', maxWidth: '600px', margin: '0 auto' }}>
                                 We're seeking Colorado employers who are interested in providing childcare benefits
-                                with philanthropic matching support. There is no cost to participate in the pilot.
+                                with philanthropic matching support. Completing this form indicates your interest in potentially
+                                participating—it is not a commitment to join the pilot.
                             </p>
                         </div>
 
@@ -1051,11 +1190,11 @@
                                         }}
                                     >
                                         <option value="">Select minimum match level you'd need</option>
-                                        <option value="10%">10% match (I'd pay 90% of the benefit)</option>
-                                        <option value="20%">20% match (I'd pay 80% of the benefit)</option>
-                                        <option value="30%">30% match (I'd pay 70% of the benefit)</option>
-                                        <option value="40%">40% match (I'd pay 60% of the benefit)</option>
-                                        <option value="50%">50% match (I'd pay 50% of the benefit)</option>
+                                        <option value="10%">10% match (my company/organization would pay 90% of the benefit)</option>
+                                        <option value="20%">20% match (my company/organization would pay 80% of the benefit)</option>
+                                        <option value="30%">30% match (my company/organization would pay 70% of the benefit)</option>
+                                        <option value="40%">40% match (my company/organization would pay 60% of the benefit)</option>
+                                        <option value="50%">50% match (my company/organization would pay 50% of the benefit)</option>
                                     </select>
                                 </div>
 
@@ -1160,7 +1299,7 @@
                         <span style={{ fontFamily: 'Crimson Pro, serif', fontSize: '1.1rem', color: 'white' }}>Employer Childcare Program</span>
                     </div>
                     <div style={{ fontSize: '0.9rem' }}>
-                        &copy; 2026 Employer Childcare Program. Improving outcomes for kids and families.
+                        &copy; 2026 Gary Community Ventures. Improving outcomes for kids and families.
                     </div>
                 </div>
             </footer>
@@ -1175,6 +1314,7 @@
                 <ProblemSection />
                 <HowItWorksSection />
                 <MatchingSection />
+                <FAQSection />
                 <CalculatorSection />
                 <BenefitsSection />
                 <Footer />

@@ -295,7 +295,7 @@
                                     <div style={{ fontSize: '0.9rem', color: '#718096' }}>Lost annually by CO employers</div>
                                 </div>
                                 <div>
-                                    <div style={{ fontSize: '2rem', fontWeight: '700', color: '#2c5364' }}>Up to 50%</div>
+                                    <div style={{ fontSize: '2rem', fontWeight: '700', color: '#2c5364' }}>Up to 100%</div>
                                     <div style={{ fontSize: '0.9rem', color: '#718096' }}>Philanthropic match available</div>
                                 </div>
                                 <div>
@@ -323,7 +323,7 @@
                                 fontWeight: '600'
                             }}>Matched Funding</div>
                             <h3 style={{ fontFamily: 'Crimson Pro, serif', fontSize: '1.5rem', marginBottom: '1.5rem', color: '#1a1a2e' }}>
-                                Quick Example: With 50% Match
+                                Quick Example: With 100% Match
                             </h3>
                             <div style={{ marginBottom: '1.5rem' }}>
                                 <div style={{ display: 'flex', justifyContent: 'space-between', padding: '0.75rem 0', borderBottom: '1px solid #e2e8f0' }}>
@@ -335,11 +335,11 @@
                                     <span style={{ fontWeight: '600' }}>$500</span>
                                 </div>
                                 <div style={{ display: 'flex', justifyContent: 'space-between', padding: '0.75rem 0', borderBottom: '1px solid #e2e8f0' }}>
-                                    <span style={{ color: '#718096' }}>Your contribution (50%)</span>
+                                    <span style={{ color: '#718096' }}>Your contribution</span>
                                     <span style={{ fontWeight: '600' }}>$250/employee</span>
                                 </div>
                                 <div style={{ display: 'flex', justifyContent: 'space-between', padding: '0.75rem 0', borderBottom: '1px solid #e2e8f0', color: '#10b981' }}>
-                                    <span>Gary's Philanthropic Match (50%)</span>
+                                    <span>Gary's Philanthropic Match (100%)</span>
                                     <span style={{ fontWeight: '700' }}>+$250/employee</span>
                                 </div>
                             </div>
@@ -349,9 +349,9 @@
                                 padding: '1.25rem',
                                 textAlign: 'center'
                             }}>
-                                <div style={{ color: '#166534', fontSize: '0.9rem', marginBottom: '0.25rem' }}>Your Net Annual Cost</div>
-                                <div style={{ color: '#166534', fontSize: '2rem', fontWeight: '700' }}>$30,000</div>
-                                <div style={{ color: '#166534', fontSize: '0.85rem' }}>$250/employee/month with match</div>
+                                <div style={{ color: '#166534', fontSize: '0.9rem', marginBottom: '0.25rem' }}>Total Employee Benefit</div>
+                                <div style={{ color: '#166534', fontSize: '2rem', fontWeight: '700' }}>$500/month</div>
+                                <div style={{ color: '#166534', fontSize: '0.85rem' }}>Your cost: $250/employee/month</div>
                             </div>
                         </div>
                     </div>
@@ -507,9 +507,9 @@
                     <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '2rem', marginBottom: '3rem' }}>
                         {/* Example Cards for different match levels */}
                         {[
-                            { match: '50%', employerCost: '$250', totalBenefit: '$500', highlight: true },
-                            { match: '40%', employerCost: '$300', totalBenefit: '$500', highlight: false },
-                            { match: '30%', employerCost: '$350', totalBenefit: '$500', highlight: false }
+                            { match: '100%', employerCost: '$250', totalBenefit: '$500', highlight: true },
+                            { match: '75%', employerCost: '$286', totalBenefit: '$500', highlight: false },
+                            { match: '50%', employerCost: '$333', totalBenefit: '$500', highlight: false }
                         ].map((item, i) => (
                             <div key={i} style={{
                                 background: item.highlight ? 'linear-gradient(135deg, #2c5364 0%, #203a43 100%)' : 'white',
@@ -712,7 +712,7 @@
             const [inputs, setInputs] = useState({
                 employees: 10,
                 totalBenefit: 500,
-                matchRate: 50,
+                matchRate: 100,
                 avgSalary: 60000,
                 turnoverRate: 15
             });
@@ -808,7 +808,7 @@
                                     <input
                                         type="range"
                                         min="10"
-                                        max="50"
+                                        max="100"
                                         step="10"
                                         value={inputs.matchRate}
                                         onChange={(e) => setInputs({...inputs, matchRate: parseInt(e.target.value)})}
@@ -816,7 +816,7 @@
                                     />
                                     <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.8rem', color: '#718096' }}>
                                         <span>10%</span>
-                                        <span>50%</span>
+                                        <span>100%</span>
                                     </div>
                                 </div>
 
@@ -1192,11 +1192,10 @@
                                         }}
                                     >
                                         <option value="">Select minimum match level you'd need</option>
-                                        <option value="10%">10% match (my company/organization would pay 90% of the benefit)</option>
-                                        <option value="20%">20% match (my company/organization would pay 80% of the benefit)</option>
-                                        <option value="30%">30% match (my company/organization would pay 70% of the benefit)</option>
-                                        <option value="40%">40% match (my company/organization would pay 60% of the benefit)</option>
-                                        <option value="50%">50% match (my company/organization would pay 50% of the benefit)</option>
+                                        <option value="25%">25% match (my company/organization would pay 80% of the benefit)</option>
+                                        <option value="50%">50% match (my company/organization would pay 67% of the benefit)</option>
+                                        <option value="75%">75% match (my company/organization would pay 57% of the benefit)</option>
+                                        <option value="100%">100% match (my company/organization would pay 50% of the benefit)</option>
                                     </select>
                                 </div>
 

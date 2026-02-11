@@ -647,7 +647,10 @@
             const { width } = useWindowSize();
             const mobile = isMobile(width);
             const tablet = isTablet(width);
-            const { t } = useLanguage();
+            const { t, language } = useLanguage();
+            const formUrl = language === 'es'
+                ? 'https://c151s.share-na2.hsforms.com/2e6JoZtaeRAWsxsk1b1gtNg'
+                : 'https://c151s.share-na2.hsforms.com/2e1z3cq8sSo-Tu8ZmKYVu0Q';
 
             useEffect(() => {
                 const handleScroll = () => setScrolled(window.scrollY > 50);
@@ -704,7 +707,7 @@
                                 <a href="#matching" style={{ color: '#1a1a2e', textDecoration: 'none', fontWeight: '500', fontSize: '0.95rem' }}>{t('navMatching')}</a>
                                 <a href="#faq" style={{ color: '#1a1a2e', textDecoration: 'none', fontWeight: '500', fontSize: '0.95rem' }}>{t('navFAQ')}</a>
                                 <LanguageToggle />
-                                <a href="#signup" style={{
+                                <a href={formUrl} target="_blank" rel="noopener noreferrer" style={{
                                     background: 'linear-gradient(135deg, #2c5364 0%, #203a43 100%)',
                                     color: 'white',
                                     padding: '0.6rem 1.5rem',
@@ -760,7 +763,7 @@
                             <a href="#calculator" onClick={handleLinkClick} style={{ color: '#1a1a2e', textDecoration: 'none', fontWeight: '500', fontSize: '1.1rem', padding: '0.75rem 0', borderBottom: '1px solid #e2e8f0' }}>{t('navCalculator')}</a>
                             <a href="#matching" onClick={handleLinkClick} style={{ color: '#1a1a2e', textDecoration: 'none', fontWeight: '500', fontSize: '1.1rem', padding: '0.75rem 0', borderBottom: '1px solid #e2e8f0' }}>{t('navMatching')}</a>
                             <a href="#faq" onClick={handleLinkClick} style={{ color: '#1a1a2e', textDecoration: 'none', fontWeight: '500', fontSize: '1.1rem', padding: '0.75rem 0', borderBottom: '1px solid #e2e8f0' }}>{t('navFAQ')}</a>
-                            <a href="#signup" onClick={handleLinkClick} style={{
+                            <a href={formUrl} target="_blank" rel="noopener noreferrer" onClick={handleLinkClick} style={{
                                 background: 'linear-gradient(135deg, #2c5364 0%, #203a43 100%)',
                                 color: 'white',
                                 padding: '1rem 1.5rem',

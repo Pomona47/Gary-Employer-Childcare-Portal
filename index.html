@@ -783,13 +783,15 @@
         // Hero Section
         const HeroSection = () => {
             const { t } = useLanguage();
+            const { width } = useWindowSize();
+            const mobile = isMobile(width);
             return (
             <section style={{
-                minHeight: '100vh',
+                minHeight: mobile ? 'auto' : '100vh',
                 background: 'linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%)',
                 display: 'flex',
                 alignItems: 'center',
-                padding: '6rem 2rem 4rem',
+                padding: mobile ? '5rem 1rem 2rem' : '6rem 2rem 4rem',
                 position: 'relative',
                 overflow: 'hidden'
             }}>
@@ -814,7 +816,7 @@
                 }}></div>
 
                 <div style={{ maxWidth: '1200px', margin: '0 auto', width: '100%', position: 'relative', zIndex: 1 }}>
-                    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '4rem', alignItems: 'center' }}>
+                    <div style={{ display: 'grid', gridTemplateColumns: mobile ? '1fr' : '1fr 1fr', gap: mobile ? '2rem' : '4rem', alignItems: 'center' }}>
                         <div>
                             <div style={{
                                 display: 'inline-flex',
@@ -823,41 +825,42 @@
                                 background: 'rgba(44,83,100,0.1)',
                                 padding: '0.5rem 1rem',
                                 borderRadius: '100px',
-                                marginBottom: '1.5rem'
+                                marginBottom: '1rem'
                             }}>
                                 <span style={{ fontSize: '0.85rem', fontWeight: '600', color: '#2c5364' }}>{t('heroBadge')}</span>
                             </div>
                             <h1 style={{
                                 fontFamily: 'Crimson Pro, serif',
-                                fontSize: '3.5rem',
+                                fontSize: mobile ? '2rem' : '3.5rem',
                                 fontWeight: '700',
                                 lineHeight: '1.15',
                                 color: '#1a1a2e',
-                                marginBottom: '1.5rem'
+                                marginBottom: '1rem'
                             }}>
                                 {t('heroTitle1')}
                                 <span style={{ color: '#2c5364' }}>{t('heroTitle2')}</span>
                             </h1>
                             <p style={{
-                                fontSize: '1.2rem',
+                                fontSize: mobile ? '1rem' : '1.2rem',
                                 color: '#4a5568',
-                                marginBottom: '2rem',
+                                marginBottom: '1.5rem',
                                 lineHeight: '1.7'
                             }}>
                                 {t('heroDescription')}
                             </p>
-                            <div style={{ display: 'flex', gap: '1rem', marginBottom: '3rem' }}>
+                            <div style={{ display: 'flex', flexDirection: mobile ? 'column' : 'row', gap: '1rem', marginBottom: '2rem' }}>
                                 <a href="#signup" style={{
                                     display: 'inline-flex',
                                     alignItems: 'center',
+                                    justifyContent: 'center',
                                     gap: '0.5rem',
                                     background: 'linear-gradient(135deg, #2c5364 0%, #203a43 100%)',
                                     color: 'white',
-                                    padding: '1rem 2rem',
+                                    padding: mobile ? '0.875rem 1.5rem' : '1rem 2rem',
                                     borderRadius: '10px',
                                     textDecoration: 'none',
                                     fontWeight: '600',
-                                    fontSize: '1.05rem',
+                                    fontSize: mobile ? '0.95rem' : '1.05rem',
                                     boxShadow: '0 4px 15px rgba(44,83,100,0.3)',
                                     transition: 'transform 0.2s ease'
                                 }}>
@@ -866,54 +869,56 @@
                                 <a href="#calculator" style={{
                                     display: 'inline-flex',
                                     alignItems: 'center',
+                                    justifyContent: 'center',
                                     gap: '0.5rem',
                                     background: 'white',
                                     color: '#2c5364',
-                                    padding: '1rem 2rem',
+                                    padding: mobile ? '0.875rem 1.5rem' : '1rem 2rem',
                                     borderRadius: '10px',
                                     textDecoration: 'none',
                                     fontWeight: '600',
-                                    fontSize: '1.05rem',
+                                    fontSize: mobile ? '0.95rem' : '1.05rem',
                                     border: '2px solid #2c5364',
                                     transition: 'all 0.2s ease'
                                 }}>
                                     {t('heroCalculateSavings')}
                                 </a>
                             </div>
-                            <div style={{ display: 'flex', gap: '2rem' }}>
-                                <div>
-                                    <div style={{ fontSize: '2rem', fontWeight: '700', color: '#2c5364' }}>{t('heroStat1Value')}</div>
-                                    <div style={{ fontSize: '0.9rem', color: '#718096' }}>{t('heroStat1Label')}</div>
+                            <div style={{ display: 'flex', flexWrap: 'wrap', gap: mobile ? '1rem' : '2rem' }}>
+                                <div style={{ minWidth: mobile ? '45%' : 'auto' }}>
+                                    <div style={{ fontSize: mobile ? '1.5rem' : '2rem', fontWeight: '700', color: '#2c5364' }}>{t('heroStat1Value')}</div>
+                                    <div style={{ fontSize: mobile ? '0.8rem' : '0.9rem', color: '#718096' }}>{t('heroStat1Label')}</div>
                                 </div>
-                                <div>
-                                    <div style={{ fontSize: '2rem', fontWeight: '700', color: '#2c5364' }}>{t('heroStat2Value')}</div>
-                                    <div style={{ fontSize: '0.9rem', color: '#718096' }}>{t('heroStat2Label')}</div>
+                                <div style={{ minWidth: mobile ? '45%' : 'auto' }}>
+                                    <div style={{ fontSize: mobile ? '1.5rem' : '2rem', fontWeight: '700', color: '#2c5364' }}>{t('heroStat2Value')}</div>
+                                    <div style={{ fontSize: mobile ? '0.8rem' : '0.9rem', color: '#718096' }}>{t('heroStat2Label')}</div>
                                 </div>
-                                <div>
-                                    <div style={{ fontSize: '2rem', fontWeight: '700', color: '#2c5364' }}>{t('heroStat3Value')}</div>
-                                    <div style={{ fontSize: '0.9rem', color: '#718096' }}>{t('heroStat3Label')}</div>
+                                <div style={{ minWidth: mobile ? '45%' : 'auto' }}>
+                                    <div style={{ fontSize: mobile ? '1.5rem' : '2rem', fontWeight: '700', color: '#2c5364' }}>{t('heroStat3Value')}</div>
+                                    <div style={{ fontSize: mobile ? '0.8rem' : '0.9rem', color: '#718096' }}>{t('heroStat3Label')}</div>
                                 </div>
                             </div>
                         </div>
                         <div style={{
                             background: 'white',
                             borderRadius: '20px',
-                            padding: '2.5rem',
+                            padding: mobile ? '1.5rem' : '2.5rem',
                             boxShadow: '0 25px 50px rgba(0,0,0,0.1)',
-                            position: 'relative'
+                            position: 'relative',
+                            marginTop: mobile ? '1rem' : '0'
                         }}>
                             <div style={{
                                 position: 'absolute',
-                                top: '-15px',
-                                right: '-15px',
+                                top: '-12px',
+                                right: mobile ? '10px' : '-15px',
                                 background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
                                 color: 'white',
-                                padding: '0.5rem 1rem',
+                                padding: '0.4rem 0.75rem',
                                 borderRadius: '8px',
-                                fontSize: '0.85rem',
+                                fontSize: mobile ? '0.75rem' : '0.85rem',
                                 fontWeight: '600'
                             }}>{t('heroExampleBadge')}</div>
-                            <h3 style={{ fontFamily: 'Crimson Pro, serif', fontSize: '1.5rem', marginBottom: '1.5rem', color: '#1a1a2e' }}>
+                            <h3 style={{ fontFamily: 'Crimson Pro, serif', fontSize: mobile ? '1.25rem' : '1.5rem', marginBottom: '1rem', color: '#1a1a2e' }}>
                                 {t('heroExampleTitle')}
                             </h3>
                             <div style={{ marginBottom: '1.5rem' }}>
@@ -953,6 +958,8 @@
         // Problem Section
         const ProblemSection = () => {
             const { t } = useLanguage();
+            const { width } = useWindowSize();
+            const mobile = isMobile(width);
             const stats = [
                 { stat: t('problemStat1'), label: t('problemStat1Label'), subtext: t('problemStat1Subtext') },
                 { stat: t('problemStat2'), label: t('problemStat2Label'), subtext: t('problemStat2Subtext') },
@@ -960,28 +967,28 @@
                 { stat: t('problemStat4'), label: t('problemStat4Label'), subtext: t('problemStat4Subtext') }
             ];
             return (
-            <section style={{ padding: '6rem 2rem', background: '#ffffff' }}>
+            <section style={{ padding: mobile ? '3rem 1rem' : '6rem 2rem', background: '#ffffff' }}>
                 <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
-                    <div style={{ textAlign: 'center', marginBottom: '4rem' }}>
-                        <h2 style={{ fontFamily: 'Crimson Pro, serif', fontSize: '2.5rem', fontWeight: '700', color: '#1a1a2e', marginBottom: '1rem' }}>
+                    <div style={{ textAlign: 'center', marginBottom: mobile ? '2rem' : '4rem' }}>
+                        <h2 style={{ fontFamily: 'Crimson Pro, serif', fontSize: mobile ? '1.75rem' : '2.5rem', fontWeight: '700', color: '#1a1a2e', marginBottom: '1rem' }}>
                             {t('problemTitle')}
                         </h2>
-                        <p style={{ fontSize: '1.1rem', color: '#4a5568', maxWidth: '700px', margin: '0 auto' }}>
+                        <p style={{ fontSize: mobile ? '1rem' : '1.1rem', color: '#4a5568', maxWidth: '700px', margin: '0 auto' }}>
                             {t('problemDescription')}
                         </p>
                     </div>
-                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '2rem' }}>
+                    <div style={{ display: 'grid', gridTemplateColumns: mobile ? 'repeat(2, 1fr)' : 'repeat(4, 1fr)', gap: mobile ? '1rem' : '2rem' }}>
                         {stats.map((item, i) => (
                             <div key={i} style={{
                                 background: '#f8fafc',
                                 borderRadius: '16px',
-                                padding: '2rem',
+                                padding: mobile ? '1.25rem' : '2rem',
                                 textAlign: 'center',
                                 transition: 'transform 0.2s ease, box-shadow 0.2s ease'
                             }}>
-                                <div style={{ fontSize: '2.5rem', fontWeight: '700', color: '#2c5364', marginBottom: '0.5rem' }}>{item.stat}</div>
-                                <div style={{ fontSize: '1rem', color: '#1a1a2e', fontWeight: '600', marginBottom: '0.5rem' }}>{item.label}</div>
-                                <div style={{ fontSize: '0.85rem', color: '#718096' }}>{item.subtext}</div>
+                                <div style={{ fontSize: mobile ? '1.5rem' : '2.5rem', fontWeight: '700', color: '#2c5364', marginBottom: '0.5rem' }}>{item.stat}</div>
+                                <div style={{ fontSize: mobile ? '0.85rem' : '1rem', color: '#1a1a2e', fontWeight: '600', marginBottom: '0.5rem' }}>{item.label}</div>
+                                <div style={{ fontSize: mobile ? '0.75rem' : '0.85rem', color: '#718096' }}>{item.subtext}</div>
                             </div>
                         ))}
                     </div>
@@ -992,31 +999,33 @@
         // How It Works Section
         const HowItWorksSection = () => {
             const { t } = useLanguage();
+            const { width } = useWindowSize();
+            const mobile = isMobile(width);
             const features = [
                 {
-                    icon: <GiftIcon size={32} />,
+                    icon: <GiftIcon size={mobile ? 24 : 32} />,
                     title: t('howItWorksFeature1Title'),
                     desc: t('howItWorksFeature1Desc')
                 },
                 {
-                    icon: <ShieldIcon size={32} />,
+                    icon: <ShieldIcon size={mobile ? 24 : 32} />,
                     title: t('howItWorksFeature2Title'),
                     desc: t('howItWorksFeature2Desc')
                 },
                 {
-                    icon: <UsersIcon size={32} />,
+                    icon: <UsersIcon size={mobile ? 24 : 32} />,
                     title: t('howItWorksFeature3Title'),
                     desc: t('howItWorksFeature3Desc')
                 }
             ];
             return (
-            <section id="how-it-works" style={{ padding: '6rem 2rem', background: 'linear-gradient(135deg, #1a1a2e 0%, #2c5364 100%)', color: 'white' }}>
+            <section id="how-it-works" style={{ padding: mobile ? '3rem 1rem' : '6rem 2rem', background: 'linear-gradient(135deg, #1a1a2e 0%, #2c5364 100%)', color: 'white' }}>
                 <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
-                    <div style={{ textAlign: 'center', marginBottom: '4rem' }}>
-                        <h2 style={{ fontFamily: 'Crimson Pro, serif', fontSize: '2.5rem', fontWeight: '700', marginBottom: '1rem' }}>
+                    <div style={{ textAlign: 'center', marginBottom: mobile ? '2rem' : '4rem' }}>
+                        <h2 style={{ fontFamily: 'Crimson Pro, serif', fontSize: mobile ? '1.75rem' : '2.5rem', fontWeight: '700', marginBottom: '1rem' }}>
                             {t('howItWorksTitle')}
                         </h2>
-                        <p style={{ fontSize: '1.1rem', color: 'rgba(255,255,255,0.8)', maxWidth: '700px', margin: '0 auto' }}>
+                        <p style={{ fontSize: mobile ? '0.95rem' : '1.1rem', color: 'rgba(255,255,255,0.8)', maxWidth: '700px', margin: '0 auto' }}>
                             {t('howItWorksDescription')}
                         </p>
                     </div>
@@ -1024,60 +1033,63 @@
                     {/* Flow Diagram */}
                     <div style={{
                         display: 'flex',
+                        flexDirection: mobile ? 'column' : 'row',
                         alignItems: 'center',
                         justifyContent: 'center',
-                        gap: '1rem',
-                        marginBottom: '4rem',
-                        flexWrap: 'wrap'
+                        gap: mobile ? '0.5rem' : '1rem',
+                        marginBottom: mobile ? '2rem' : '4rem'
                     }}>
                         <div style={{
                             background: 'rgba(255,255,255,0.1)',
                             borderRadius: '16px',
-                            padding: '1.5rem 2rem',
+                            padding: mobile ? '1rem 1.5rem' : '1.5rem 2rem',
                             textAlign: 'center',
-                            border: '2px solid rgba(255,255,255,0.2)'
+                            border: '2px solid rgba(255,255,255,0.2)',
+                            width: mobile ? '100%' : 'auto'
                         }}>
-                            <BuildingIcon size={32} />
-                            <div style={{ marginTop: '0.5rem', fontWeight: '600' }}>{t('howItWorksYourCompany')}</div>
-                            <div style={{ fontSize: '0.85rem', color: 'rgba(255,255,255,0.7)' }}>{t('howItWorksContributesFunds')}</div>
+                            <BuildingIcon size={mobile ? 24 : 32} />
+                            <div style={{ marginTop: '0.5rem', fontWeight: '600', fontSize: mobile ? '0.9rem' : '1rem' }}>{t('howItWorksYourCompany')}</div>
+                            <div style={{ fontSize: mobile ? '0.75rem' : '0.85rem', color: 'rgba(255,255,255,0.7)' }}>{t('howItWorksContributesFunds')}</div>
                         </div>
-                        <ArrowRight size={28} style={{ color: 'rgba(255,255,255,0.5)' }} />
+                        <ArrowRight size={mobile ? 20 : 28} style={{ color: 'rgba(255,255,255,0.5)', transform: mobile ? 'rotate(90deg)' : 'none' }} />
                         <div style={{
                             background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
                             borderRadius: '16px',
-                            padding: '1.5rem 2rem',
+                            padding: mobile ? '1rem 1.5rem' : '1.5rem 2rem',
                             textAlign: 'center',
-                            boxShadow: '0 10px 30px rgba(102,126,234,0.3)'
+                            boxShadow: '0 10px 30px rgba(102,126,234,0.3)',
+                            width: mobile ? '100%' : 'auto'
                         }}>
-                            <div style={{ fontSize: '1.5rem', fontWeight: '700' }}>{t('howItWorksGary')}</div>
-                            <div style={{ fontSize: '0.85rem', marginTop: '0.25rem' }}>{t('howItWorksPhilanthropicMatch')}</div>
-                            <div style={{ fontSize: '0.75rem', color: 'rgba(255,255,255,0.8)', marginTop: '0.5rem' }}>{t('howItWorksManagesAll')}</div>
+                            <div style={{ fontSize: mobile ? '1.25rem' : '1.5rem', fontWeight: '700' }}>{t('howItWorksGary')}</div>
+                            <div style={{ fontSize: mobile ? '0.75rem' : '0.85rem', marginTop: '0.25rem' }}>{t('howItWorksPhilanthropicMatch')}</div>
+                            <div style={{ fontSize: mobile ? '0.7rem' : '0.75rem', color: 'rgba(255,255,255,0.8)', marginTop: '0.5rem' }}>{t('howItWorksManagesAll')}</div>
                         </div>
-                        <ArrowRight size={28} style={{ color: 'rgba(255,255,255,0.5)' }} />
+                        <ArrowRight size={mobile ? 20 : 28} style={{ color: 'rgba(255,255,255,0.5)', transform: mobile ? 'rotate(90deg)' : 'none' }} />
                         <div style={{
                             background: 'rgba(255,255,255,0.1)',
                             borderRadius: '16px',
-                            padding: '1.5rem 2rem',
+                            padding: mobile ? '1rem 1.5rem' : '1.5rem 2rem',
                             textAlign: 'center',
-                            border: '2px solid rgba(255,255,255,0.2)'
+                            border: '2px solid rgba(255,255,255,0.2)',
+                            width: mobile ? '100%' : 'auto'
                         }}>
-                            <HeartIcon size={32} />
-                            <div style={{ marginTop: '0.5rem', fontWeight: '600' }}>{t('howItWorksProviders')}</div>
-                            <div style={{ fontSize: '0.85rem', color: 'rgba(255,255,255,0.7)' }}>{t('howItWorksDirectPayment')}</div>
+                            <HeartIcon size={mobile ? 24 : 32} />
+                            <div style={{ marginTop: '0.5rem', fontWeight: '600', fontSize: mobile ? '0.9rem' : '1rem' }}>{t('howItWorksProviders')}</div>
+                            <div style={{ fontSize: mobile ? '0.75rem' : '0.85rem', color: 'rgba(255,255,255,0.7)' }}>{t('howItWorksDirectPayment')}</div>
                         </div>
                     </div>
 
-                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '2rem' }}>
+                    <div style={{ display: 'grid', gridTemplateColumns: mobile ? '1fr' : 'repeat(3, 1fr)', gap: mobile ? '1rem' : '2rem' }}>
                         {features.map((item, i) => (
                             <div key={i} style={{
                                 background: 'rgba(255,255,255,0.05)',
                                 borderRadius: '16px',
-                                padding: '2rem',
+                                padding: mobile ? '1.25rem' : '2rem',
                                 border: '1px solid rgba(255,255,255,0.1)'
                             }}>
-                                <div style={{ color: '#667eea', marginBottom: '1rem' }}>{item.icon}</div>
-                                <h3 style={{ fontSize: '1.25rem', fontWeight: '600', marginBottom: '0.75rem' }}>{item.title}</h3>
-                                <p style={{ color: 'rgba(255,255,255,0.7)', fontSize: '0.95rem', lineHeight: '1.6' }}>{item.desc}</p>
+                                <div style={{ color: '#667eea', marginBottom: '0.75rem' }}>{item.icon}</div>
+                                <h3 style={{ fontSize: mobile ? '1.1rem' : '1.25rem', fontWeight: '600', marginBottom: '0.5rem' }}>{item.title}</h3>
+                                <p style={{ color: 'rgba(255,255,255,0.7)', fontSize: mobile ? '0.9rem' : '0.95rem', lineHeight: '1.6' }}>{item.desc}</p>
                             </div>
                         ))}
                     </div>
@@ -1088,30 +1100,32 @@
         // Matching Section
         const MatchingSection = () => {
             const { t } = useLanguage();
+            const { width } = useWindowSize();
+            const mobile = isMobile(width);
             const matchCards = [
                 { match: '50%', employerCost: '$250', totalBenefit: '$500', highlight: true },
                 { match: '40%', employerCost: '$300', totalBenefit: '$500', highlight: false },
                 { match: '30%', employerCost: '$350', totalBenefit: '$500', highlight: false }
             ];
             return (
-            <section id="matching" style={{ padding: '6rem 2rem', background: '#f8fafc' }}>
+            <section id="matching" style={{ padding: mobile ? '3rem 1rem' : '6rem 2rem', background: '#f8fafc' }}>
                 <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
-                    <div style={{ textAlign: 'center', marginBottom: '4rem' }}>
-                        <h2 style={{ fontFamily: 'Crimson Pro, serif', fontSize: '2.5rem', fontWeight: '700', color: '#1a1a2e', marginBottom: '1rem' }}>
+                    <div style={{ textAlign: 'center', marginBottom: mobile ? '2rem' : '4rem' }}>
+                        <h2 style={{ fontFamily: 'Crimson Pro, serif', fontSize: mobile ? '1.75rem' : '2.5rem', fontWeight: '700', color: '#1a1a2e', marginBottom: '1rem' }}>
                             {t('matchingTitle')}
                         </h2>
-                        <p style={{ fontSize: '1.1rem', color: '#4a5568', maxWidth: '700px', margin: '0 auto' }}>
+                        <p style={{ fontSize: mobile ? '0.95rem' : '1.1rem', color: '#4a5568', maxWidth: '700px', margin: '0 auto' }}>
                             {t('matchingDescription')}
                         </p>
                     </div>
 
-                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '2rem', marginBottom: '3rem' }}>
+                    <div style={{ display: 'grid', gridTemplateColumns: mobile ? '1fr' : 'repeat(3, 1fr)', gap: mobile ? '1rem' : '2rem', marginBottom: mobile ? '1.5rem' : '3rem' }}>
                         {/* Example Cards for different match levels */}
                         {matchCards.map((item, i) => (
                             <div key={i} style={{
                                 background: item.highlight ? 'linear-gradient(135deg, #2c5364 0%, #203a43 100%)' : 'white',
                                 borderRadius: '20px',
-                                padding: '2rem',
+                                padding: mobile ? '1.25rem' : '2rem',
                                 boxShadow: item.highlight ? '0 10px 40px rgba(44,83,100,0.3)' : '0 10px 40px rgba(0,0,0,0.08)',
                                 color: item.highlight ? 'white' : '#1a1a2e',
                                 position: 'relative',
@@ -1131,24 +1145,24 @@
                                     }}>{t('matchingExample')}</div>
                                 )}
                                 <div style={{
-                                    fontSize: '2.5rem',
+                                    fontSize: mobile ? '2rem' : '2.5rem',
                                     fontWeight: '700',
                                     marginBottom: '0.5rem',
                                     color: item.highlight ? 'white' : '#2c5364'
                                 }}>{item.match}</div>
                                 <div style={{
-                                    fontSize: '1rem',
+                                    fontSize: mobile ? '0.9rem' : '1rem',
                                     fontWeight: '600',
-                                    marginBottom: '1.5rem',
+                                    marginBottom: '1rem',
                                     color: item.highlight ? 'rgba(255,255,255,0.8)' : '#718096'
                                 }}>{t('matchingPhilanthropicMatch')}</div>
                                 <div style={{ borderTop: item.highlight ? '1px solid rgba(255,255,255,0.2)' : '1px solid #e2e8f0', paddingTop: '1rem' }}>
                                     <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '0.5rem' }}>
-                                        <span style={{ color: item.highlight ? 'rgba(255,255,255,0.7)' : '#718096' }}>{t('matchingYourCost')}</span>
+                                        <span style={{ color: item.highlight ? 'rgba(255,255,255,0.7)' : '#718096', fontSize: mobile ? '0.85rem' : '1rem' }}>{t('matchingYourCost')}</span>
                                         <span style={{ fontWeight: '600' }}>{item.employerCost}</span>
                                     </div>
                                     <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-                                        <span style={{ color: item.highlight ? 'rgba(255,255,255,0.7)' : '#718096' }}>{t('matchingTotalBenefit')}</span>
+                                        <span style={{ color: item.highlight ? 'rgba(255,255,255,0.7)' : '#718096', fontSize: mobile ? '0.85rem' : '1rem' }}>{t('matchingTotalBenefit')}</span>
                                         <span style={{ fontWeight: '600' }}>{item.totalBenefit}</span>
                                     </div>
                                 </div>
@@ -1160,17 +1174,17 @@
                     <div style={{
                         background: 'linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%)',
                         borderRadius: '16px',
-                        padding: '1.5rem 2rem',
+                        padding: mobile ? '1rem' : '1.5rem 2rem',
                         display: 'flex',
                         alignItems: 'flex-start',
                         gap: '1rem'
                     }}>
-                        <div style={{ color: '#1e40af', marginTop: '2px' }}>
-                            <GiftIcon size={24} />
+                        <div style={{ color: '#1e40af', marginTop: '2px', flexShrink: 0 }}>
+                            <GiftIcon size={mobile ? 20 : 24} />
                         </div>
                         <div>
-                            <div style={{ fontWeight: '700', color: '#1e40af', marginBottom: '0.25rem' }}>{t('matchingHowItWorksTitle')}</div>
-                            <div style={{ color: '#1e3a8a', fontSize: '0.95rem' }}>
+                            <div style={{ fontWeight: '700', color: '#1e40af', marginBottom: '0.25rem', fontSize: mobile ? '0.95rem' : '1rem' }}>{t('matchingHowItWorksTitle')}</div>
+                            <div style={{ color: '#1e3a8a', fontSize: mobile ? '0.85rem' : '0.95rem' }}>
                                 {t('matchingHowItWorksDesc')}
                             </div>
                         </div>
@@ -1183,6 +1197,8 @@
         const FAQSection = () => {
             const [openIndex, setOpenIndex] = useState(null);
             const { t } = useLanguage();
+            const { width } = useWindowSize();
+            const mobile = isMobile(width);
 
             const faqs = [
                 { question: t('faqQuestion1'), answer: t('faqAnswer1') },
@@ -1195,18 +1211,18 @@
             ];
 
             return (
-                <section id="faq" style={{ padding: '6rem 2rem', background: '#ffffff' }}>
+                <section id="faq" style={{ padding: mobile ? '3rem 1rem' : '6rem 2rem', background: '#ffffff' }}>
                     <div style={{ maxWidth: '900px', margin: '0 auto' }}>
-                        <div style={{ textAlign: 'center', marginBottom: '4rem' }}>
-                            <h2 style={{ fontFamily: 'Crimson Pro, serif', fontSize: '2.5rem', fontWeight: '700', color: '#1a1a2e', marginBottom: '1rem' }}>
+                        <div style={{ textAlign: 'center', marginBottom: mobile ? '2rem' : '4rem' }}>
+                            <h2 style={{ fontFamily: 'Crimson Pro, serif', fontSize: mobile ? '1.75rem' : '2.5rem', fontWeight: '700', color: '#1a1a2e', marginBottom: '1rem' }}>
                                 {t('faqTitle')}
                             </h2>
-                            <p style={{ fontSize: '1.1rem', color: '#4a5568', maxWidth: '700px', margin: '0 auto' }}>
+                            <p style={{ fontSize: mobile ? '0.95rem' : '1.1rem', color: '#4a5568', maxWidth: '700px', margin: '0 auto' }}>
                                 {t('faqDescription')}
                             </p>
                         </div>
 
-                        <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+                        <div style={{ display: 'flex', flexDirection: 'column', gap: mobile ? '0.75rem' : '1rem' }}>
                             {faqs.map((faq, index) => (
                                 <div
                                     key={index}
@@ -1222,7 +1238,7 @@
                                         onClick={() => setOpenIndex(openIndex === index ? null : index)}
                                         style={{
                                             width: '100%',
-                                            padding: '1.25rem 1.5rem',
+                                            padding: mobile ? '1rem' : '1.25rem 1.5rem',
                                             display: 'flex',
                                             justifyContent: 'space-between',
                                             alignItems: 'center',
@@ -1234,7 +1250,7 @@
                                     >
                                         <span style={{
                                             fontWeight: '600',
-                                            fontSize: '1.05rem',
+                                            fontSize: mobile ? '0.95rem' : '1.05rem',
                                             color: '#1a1a2e',
                                             paddingRight: '1rem'
                                         }}>
@@ -1251,10 +1267,10 @@
                                     </button>
                                     {openIndex === index && (
                                         <div style={{
-                                            padding: '0 1.5rem 1.25rem 1.5rem',
+                                            padding: mobile ? '0 1rem 1rem 1rem' : '0 1.5rem 1.25rem 1.5rem',
                                             color: '#4a5568',
                                             lineHeight: '1.7',
-                                            fontSize: '0.95rem'
+                                            fontSize: mobile ? '0.9rem' : '0.95rem'
                                         }}>
                                             {faq.answer}
                                         </div>
@@ -1264,13 +1280,13 @@
                         </div>
 
                         <div style={{
-                            marginTop: '3rem',
-                            padding: '1.5rem 2rem',
+                            marginTop: mobile ? '2rem' : '3rem',
+                            padding: mobile ? '1rem' : '1.5rem 2rem',
                             background: 'linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%)',
                             borderRadius: '12px',
                             textAlign: 'center'
                         }}>
-                            <p style={{ color: '#166534', fontSize: '0.95rem' }}>
+                            <p style={{ color: '#166534', fontSize: mobile ? '0.85rem' : '0.95rem' }}>
                                 <strong>{t('faqMoreQuestions')}</strong> {t('faqContact')}{' '}
                                 <a href="mailto:leisang@garycommunity.org" style={{ color: '#166534', fontWeight: '600' }}>
                                     leisang@garycommunity.org
@@ -1285,6 +1301,8 @@
         // Calculator Section
         const CalculatorSection = () => {
             const { t } = useLanguage();
+            const { width } = useWindowSize();
+            const mobile = isMobile(width);
             const [inputs, setInputs] = useState({
                 employees: 10,
                 totalBenefit: 500,
@@ -1314,25 +1332,25 @@
             const roi = ((totalSavings - annualEmployerCost) / annualEmployerCost) * 100;
 
             return (
-                <section id="calculator" style={{ padding: '6rem 2rem', background: '#ffffff' }}>
+                <section id="calculator" style={{ padding: mobile ? '3rem 1rem' : '6rem 2rem', background: '#ffffff' }}>
                     <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
-                        <div style={{ textAlign: 'center', marginBottom: '4rem' }}>
-                            <h2 style={{ fontFamily: 'Crimson Pro, serif', fontSize: '2.5rem', fontWeight: '700', color: '#1a1a2e', marginBottom: '1rem' }}>
+                        <div style={{ textAlign: 'center', marginBottom: mobile ? '2rem' : '4rem' }}>
+                            <h2 style={{ fontFamily: 'Crimson Pro, serif', fontSize: mobile ? '1.75rem' : '2.5rem', fontWeight: '700', color: '#1a1a2e', marginBottom: '1rem' }}>
                                 {t('calcTitle')}
                             </h2>
-                            <p style={{ fontSize: '1.1rem', color: '#4a5568', maxWidth: '700px', margin: '0 auto' }}>
+                            <p style={{ fontSize: mobile ? '0.95rem' : '1.1rem', color: '#4a5568', maxWidth: '700px', margin: '0 auto' }}>
                                 {t('calcDescription')}
                             </p>
                         </div>
 
-                        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '3rem' }}>
+                        <div style={{ display: 'grid', gridTemplateColumns: mobile ? '1fr' : '1fr 1fr', gap: mobile ? '1.5rem' : '3rem' }}>
                             {/* Inputs */}
                             <div style={{
                                 background: '#f8fafc',
                                 borderRadius: '20px',
-                                padding: '2.5rem'
+                                padding: mobile ? '1.25rem' : '2.5rem'
                             }}>
-                                <h3 style={{ fontFamily: 'Crimson Pro, serif', fontSize: '1.5rem', marginBottom: '2rem' }}>{t('calcYourCompany')}</h3>
+                                <h3 style={{ fontFamily: 'Crimson Pro, serif', fontSize: mobile ? '1.25rem' : '1.5rem', marginBottom: mobile ? '1.5rem' : '2rem' }}>{t('calcYourCompany')}</h3>
 
                                 {/* Employees Slider */}
                                 <div style={{ marginBottom: '2rem' }}>
@@ -1444,12 +1462,12 @@
                                 <div style={{
                                     background: 'white',
                                     borderRadius: '20px',
-                                    padding: '2rem',
+                                    padding: mobile ? '1.25rem' : '2rem',
                                     boxShadow: '0 10px 40px rgba(0,0,0,0.08)',
                                     marginBottom: '1.5rem'
                                 }}>
-                                    <h3 style={{ fontFamily: 'Crimson Pro, serif', fontSize: '1.25rem', marginBottom: '1.5rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                                        <DollarIcon size={24} /> {t('calcCostBreakdown')}
+                                    <h3 style={{ fontFamily: 'Crimson Pro, serif', fontSize: mobile ? '1.1rem' : '1.25rem', marginBottom: mobile ? '1rem' : '1.5rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                                        <DollarIcon size={mobile ? 20 : 24} /> {t('calcCostBreakdown')}
                                     </h3>
                                     <div style={{ display: 'flex', justifyContent: 'space-between', padding: '0.75rem 0', borderBottom: '1px solid #e2e8f0' }}>
                                         <span style={{ color: '#718096' }}>{t('calcTotalAnnualBenefit')}</span>
@@ -1479,11 +1497,11 @@
                                 <div style={{
                                     background: 'linear-gradient(135deg, #2c5364 0%, #203a43 100%)',
                                     borderRadius: '20px',
-                                    padding: '2rem',
+                                    padding: mobile ? '1.25rem' : '2rem',
                                     color: 'white'
                                 }}>
-                                    <h3 style={{ fontFamily: 'Crimson Pro, serif', fontSize: '1.25rem', marginBottom: '1.5rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                                        <TrendingUpIcon size={24} /> {t('calcEstimatedSavings')}
+                                    <h3 style={{ fontFamily: 'Crimson Pro, serif', fontSize: mobile ? '1.1rem' : '1.25rem', marginBottom: mobile ? '1rem' : '1.5rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                                        <TrendingUpIcon size={mobile ? 20 : 24} /> {t('calcEstimatedSavings')}
                                     </h3>
                                     <div style={{ display: 'flex', justifyContent: 'space-between', padding: '0.75rem 0', borderBottom: '1px solid rgba(255,255,255,0.2)' }}>
                                         <span style={{ color: 'rgba(255,255,255,0.8)' }}>{t('calcTurnoverReduction')}</span>
@@ -1506,13 +1524,13 @@
                                     </div>
                                     <div style={{
                                         textAlign: 'center',
-                                        marginTop: '1.5rem',
-                                        padding: '1.5rem',
+                                        marginTop: mobile ? '1rem' : '1.5rem',
+                                        padding: mobile ? '1rem' : '1.5rem',
                                         background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
                                         borderRadius: '12px'
                                     }}>
-                                        <div style={{ fontSize: '0.9rem', marginBottom: '0.25rem' }}>{t('calcEstimatedROI')}</div>
-                                        <div style={{ fontSize: '2.5rem', fontWeight: '700' }}>{roi > 0 ? '+' : ''}{Math.round(roi)}%</div>
+                                        <div style={{ fontSize: mobile ? '0.85rem' : '0.9rem', marginBottom: '0.25rem' }}>{t('calcEstimatedROI')}</div>
+                                        <div style={{ fontSize: mobile ? '2rem' : '2.5rem', fontWeight: '700' }}>{roi > 0 ? '+' : ''}{Math.round(roi)}%</div>
                                     </div>
                                 </div>
                             </div>
@@ -1532,6 +1550,8 @@
         // Benefits Section
         const BenefitsSection = () => {
             const { t } = useLanguage();
+            const { width } = useWindowSize();
+            const mobile = isMobile(width);
             const benefits = [
                 { stat: t('benefitsStat1'), title: t('benefitsStat1Title'), source: t('benefitsStat1Source'), desc: t('benefitsStat1Desc') },
                 { stat: t('benefitsStat2'), title: t('benefitsStat2Title'), source: t('benefitsStat2Source'), desc: t('benefitsStat2Desc') },
@@ -1541,30 +1561,30 @@
                 { stat: t('benefitsStat6'), title: t('benefitsStat6Title'), source: t('benefitsStat6Source'), desc: t('benefitsStat6Desc') }
             ];
             return (
-            <section style={{ padding: '6rem 2rem', background: '#f8fafc' }}>
+            <section style={{ padding: mobile ? '3rem 1rem' : '6rem 2rem', background: '#f8fafc' }}>
                 <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
-                    <div style={{ textAlign: 'center', marginBottom: '4rem' }}>
-                        <h2 style={{ fontFamily: 'Crimson Pro, serif', fontSize: '2.5rem', fontWeight: '700', color: '#1a1a2e', marginBottom: '1rem' }}>
+                    <div style={{ textAlign: 'center', marginBottom: mobile ? '2rem' : '4rem' }}>
+                        <h2 style={{ fontFamily: 'Crimson Pro, serif', fontSize: mobile ? '1.75rem' : '2.5rem', fontWeight: '700', color: '#1a1a2e', marginBottom: '1rem' }}>
                             {t('benefitsTitle')}
                         </h2>
-                        <p style={{ fontSize: '1.1rem', color: '#4a5568', maxWidth: '700px', margin: '0 auto' }}>
+                        <p style={{ fontSize: mobile ? '0.95rem' : '1.1rem', color: '#4a5568', maxWidth: '700px', margin: '0 auto' }}>
                             {t('benefitsDescription')}
                         </p>
                     </div>
 
-                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '2rem' }}>
+                    <div style={{ display: 'grid', gridTemplateColumns: mobile ? '1fr' : 'repeat(3, 1fr)', gap: mobile ? '1rem' : '2rem' }}>
                         {benefits.map((item, i) => (
                             <div key={i} style={{
                                 background: 'white',
                                 borderRadius: '16px',
-                                padding: '2rem',
+                                padding: mobile ? '1.25rem' : '2rem',
                                 boxShadow: '0 4px 15px rgba(0,0,0,0.05)',
                                 transition: 'transform 0.2s ease, box-shadow 0.2s ease'
                             }}>
-                                <div style={{ fontSize: '2.25rem', fontWeight: '700', color: '#2c5364', marginBottom: '0.5rem' }}>{item.stat}</div>
-                                <div style={{ fontSize: '1.1rem', fontWeight: '600', color: '#1a1a2e', marginBottom: '0.5rem' }}>{item.title}</div>
+                                <div style={{ fontSize: mobile ? '1.75rem' : '2.25rem', fontWeight: '700', color: '#2c5364', marginBottom: '0.5rem' }}>{item.stat}</div>
+                                <div style={{ fontSize: mobile ? '1rem' : '1.1rem', fontWeight: '600', color: '#1a1a2e', marginBottom: '0.5rem' }}>{item.title}</div>
                                 <div style={{ fontSize: '0.8rem', color: '#667eea', fontWeight: '600', marginBottom: '0.75rem' }}>{item.source}</div>
-                                <p style={{ fontSize: '0.9rem', color: '#718096', lineHeight: '1.5' }}>{item.desc}</p>
+                                <p style={{ fontSize: mobile ? '0.85rem' : '0.9rem', color: '#718096', lineHeight: '1.5' }}>{item.desc}</p>
                             </div>
                         ))}
                     </div>
@@ -1575,13 +1595,15 @@
         // Signup Section
         const SignupSection = () => {
             const { t, language } = useLanguage();
+            const { width } = useWindowSize();
+            const mobile = isMobile(width);
             const formUrl = language === 'es'
                 ? 'https://c151s.share-na2.hsforms.com/2e6JoZtaeRAWsxsk1b1gtNg'
                 : 'https://c151s.share-na2.hsforms.com/2e1z3cq8sSo-Tu8ZmKYVu0Q';
             return (
-                <section id="signup" style={{ padding: '6rem 2rem', background: 'linear-gradient(135deg, #1a1a2e 0%, #2c5364 100%)', color: 'white' }}>
+                <section id="signup" style={{ padding: mobile ? '3rem 1rem' : '6rem 2rem', background: 'linear-gradient(135deg, #1a1a2e 0%, #2c5364 100%)', color: 'white' }}>
                     <div style={{ maxWidth: '800px', margin: '0 auto' }}>
-                        <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
+                        <div style={{ textAlign: 'center', marginBottom: mobile ? '2rem' : '3rem' }}>
                             <div style={{
                                 display: 'inline-flex',
                                 alignItems: 'center',
@@ -1589,14 +1611,14 @@
                                 background: 'rgba(255,255,255,0.1)',
                                 padding: '0.5rem 1rem',
                                 borderRadius: '100px',
-                                marginBottom: '1.5rem'
+                                marginBottom: mobile ? '1rem' : '1.5rem'
                             }}>
-                                <span style={{ fontSize: '0.85rem', fontWeight: '600' }}>{t('signupBadge')}</span>
+                                <span style={{ fontSize: mobile ? '0.8rem' : '0.85rem', fontWeight: '600' }}>{t('signupBadge')}</span>
                             </div>
-                            <h2 style={{ fontFamily: 'Crimson Pro, serif', fontSize: '2.5rem', fontWeight: '700', marginBottom: '1rem' }}>
+                            <h2 style={{ fontFamily: 'Crimson Pro, serif', fontSize: mobile ? '1.75rem' : '2.5rem', fontWeight: '700', marginBottom: '1rem' }}>
                                 {t('signupTitle')}
                             </h2>
-                            <p style={{ fontSize: '1.1rem', color: 'rgba(255,255,255,0.8)', maxWidth: '600px', margin: '0 auto' }}>
+                            <p style={{ fontSize: mobile ? '0.95rem' : '1.1rem', color: 'rgba(255,255,255,0.8)', maxWidth: '600px', margin: '0 auto' }}>
                                 {t('signupDescription')}
                             </p>
                         </div>
@@ -1604,14 +1626,14 @@
                         <div style={{
                             background: 'white',
                             borderRadius: '20px',
-                            padding: '3rem',
+                            padding: mobile ? '1.5rem' : '3rem',
                             textAlign: 'center',
                             color: '#1a1a2e'
                         }}>
-                            <h3 style={{ fontFamily: 'Crimson Pro, serif', fontSize: '1.75rem', marginBottom: '1rem' }}>
+                            <h3 style={{ fontFamily: 'Crimson Pro, serif', fontSize: mobile ? '1.35rem' : '1.75rem', marginBottom: '1rem' }}>
                                 {t('signupReady')}
                             </h3>
-                            <p style={{ color: '#4a5568', marginBottom: '2rem', maxWidth: '500px', margin: '0 auto 2rem' }}>
+                            <p style={{ color: '#4a5568', marginBottom: '2rem', maxWidth: '500px', margin: '0 auto 2rem', fontSize: mobile ? '0.9rem' : '1rem' }}>
                                 {t('signupReadyDesc')}
                             </p>
                             <a
@@ -1639,7 +1661,7 @@
                             </a>
                         </div>
 
-                        <p style={{ textAlign: 'center', marginTop: '1.5rem', color: 'rgba(255,255,255,0.7)', fontSize: '0.9rem' }}>
+                        <p style={{ textAlign: 'center', marginTop: mobile ? '1rem' : '1.5rem', color: 'rgba(255,255,255,0.7)', fontSize: mobile ? '0.8rem' : '0.9rem' }}>
                             {t('signupContactDirect')} <a href="mailto:leisang@garycommunity.org" style={{ color: 'white', fontWeight: '600' }}>leisang@garycommunity.org</a>
                         </p>
                     </div>
@@ -1650,9 +1672,11 @@
         // Footer
         const Footer = () => {
             const { t } = useLanguage();
+            const { width } = useWindowSize();
+            const mobile = isMobile(width);
             return (
-            <footer style={{ padding: '3rem 2rem', background: '#0f172a', color: 'rgba(255,255,255,0.7)' }}>
-                <div style={{ maxWidth: '1200px', margin: '0 auto', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+            <footer style={{ padding: mobile ? '2rem 1rem' : '3rem 2rem', background: '#0f172a', color: 'rgba(255,255,255,0.7)' }}>
+                <div style={{ maxWidth: '1200px', margin: '0 auto', display: 'flex', flexDirection: mobile ? 'column' : 'row', justifyContent: 'space-between', alignItems: 'center', gap: mobile ? '1rem' : '0' }}>
                     <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
                         <div style={{
                             width: '36px',
@@ -1668,7 +1692,7 @@
                         }}>{t('navProgramNameShort')}</div>
                         <span style={{ fontFamily: 'Crimson Pro, serif', fontSize: '1.1rem', color: 'white' }}>{t('navProgramName')}</span>
                     </div>
-                    <div style={{ fontSize: '0.9rem' }}>
+                    <div style={{ fontSize: mobile ? '0.8rem' : '0.9rem', textAlign: mobile ? 'center' : 'right' }}>
                         {t('footerCopyright')}
                     </div>
                 </div>
